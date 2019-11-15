@@ -1,16 +1,16 @@
 image: openjdk:11
 
-  stages:
+stages:
     - build
-    
-  before_script:
+
+before_script:
     - docker info
 
-  develop:
+develop:
     stage: 
-      - build
+        - build
     script:
-      - docker build -t cm6213-ons-skillsdb .
-      - docker run -p 80:8080 cm6213-ons-skillsdb
+        - docker build -t cm6213-ons-skillsdb .
+        - docker run -p 80:8080 cm6213-ons-skillsdb
     only:
-      - develop
+        - develop
