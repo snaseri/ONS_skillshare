@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS AssociatedTeams (
     user_id INT NOT NULL,
     team_id INT NOT NULL,
     left_team DATETIME,
-    joined_team DATETIME,
+    joined_team DATETIME DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (team_id) REFERENCES Teams(id)
 );
