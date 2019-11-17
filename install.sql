@@ -2,18 +2,27 @@ CREATE DATABASE IF NOT EXISTS SkillsDB;
 
 USE SkillsDB;
 
+/*
+ A <<User>> which e.g JohnDoe
+ */
 CREATE TABLE IF NOT EXISTS Users (
     id  INT NOT NULL PRIMARY KEY ,
     username VARCHAR(30) NOT NULL,
     password VARCHAR(100) NOT NULL
 );
 
+/*
+ A <<Team>> which could be Software Engineers
+ */
 CREATE TABLE IF NOT EXISTS Teams (
     id INT NOT NULL PRIMARY KEY ,
     name VARCHAR(50),
     descripion TEXT
 );
 
+/*
+ A <<AssoicatedTeam(s)>> is a linking table that links <<User(s)>> to a <<Team(s)>>
+*/
 CREATE TABLE IF NOT EXISTS AssociatedTeams (
     id INT NOT NULL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -24,17 +33,26 @@ CREATE TABLE IF NOT EXISTS AssociatedTeams (
     FOREIGN KEY (team_id) REFERENCES Teams(id)
 );
 
+/*
+ A <<Skill>> for example Python.
+ */
 CREATE TABLE IF NOT EXISTS Skills (
     id INT NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     description TEXT(300) NOT NULL
 );
 
+/*
+ A <<Type>> which an <<Advert>> can be (Mentor, Advice, Assist Accelerate)
+ */
 CREATE TABLE IF NOT EXISTS Types (
     id INT NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
 
+/*
+ A <<User>> can create a <<Course>> for a <<Skill>>
+ */
 CREATE TABLE IF NOT EXISTS Courses (
     id INT NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL ,
@@ -42,12 +60,16 @@ CREATE TABLE IF NOT EXISTS Courses (
     is_free BOOLEAN,
     price DECIMAL,
     date DATETIME NOT NULL,
+    location VARCHAR(50),
     user_creator INT NOT NULL,
     skill_id INT NOT NULL,
     FOREIGN KEY (user_creator) REFERENCES Users(id),
     FOREIGN KEY (skill_id) REFERENCES  Skills(id)
 );
 
+/*
+ A <<User>> can create an <<Advert>>... with <<Type>>... for a <<Skill>>
+*/
 CREATE TABLE IF NOT EXISTS Adverts (
     id INT NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL ,
@@ -61,6 +83,9 @@ CREATE TABLE IF NOT EXISTS Adverts (
     FOREIGN KEY (type_id) REFERENCES Types(id)
 );
 
+/*
+ A <<User>> can leave a review on a <<Course>>.
+*/
 CREATE TABLE IF NOT EXISTS Reviews (
     id INT NOT NULL PRIMARY KEY,
     title VARCHAR(50) NOT NULL ,
@@ -71,6 +96,9 @@ CREATE TABLE IF NOT EXISTS Reviews (
     FOREIGN KEY (user_creator) REFERENCES Users(id)
 );
 
+/*
+ A <<User>> can leave a comment on a <<Advert>>.
+*/
 CREATE TABLE IF NOT EXISTS Comments (
     id INT NOT NULL PRIMARY KEY,
     title VARCHAR(50) NOT NULL ,
