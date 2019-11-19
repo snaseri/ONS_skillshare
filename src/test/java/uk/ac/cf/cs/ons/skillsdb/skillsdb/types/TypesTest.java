@@ -12,14 +12,14 @@ public class TypesTest {
     @Before
     public void setup() {
       type = new Type()
-              .id(1L)
+              .id(1)
               .name(AdvertType.ADVICE);
     }
 
     @Test
     public void typeIdCanChange() {
-      type.id(2L);
-      assertEquals( 2L, type.id() );
+      type.id(2);
+      assertEquals( 2, type.id() );
     }
 
     @Test
