@@ -34,6 +34,16 @@ CREATE TABLE IF NOT EXISTS AssociatedTeams (
 );
 
 /*
+A <<AssociatedSkill(s)>> is a linking table that links <<User(s)>> to a <<Skill(s)>>
+ */
+CREATE TABLE IF NOT EXISTS AssociatedSkills (
+    id INT NOT NULL PRIMARY KEY,
+    user_id INT NOT NULL,
+    skill_id INT NOT NULL,
+    rating INT NOT NULL
+);
+
+/*
  A <<Skill>> for example Python.
  */
 CREATE TABLE IF NOT EXISTS Skills (
