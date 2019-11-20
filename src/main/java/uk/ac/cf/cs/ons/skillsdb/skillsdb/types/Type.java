@@ -31,7 +31,7 @@ public class Type {
    * @param name New name of type of Type.
    * @return name of Type.
    */
-  @Enumerated(EnumType.STRING)
+  @Enumerated(EnumType.ORDINAL)
   private AdvertType name;
 
 
