@@ -31,6 +31,17 @@ CREATE TABLE IF NOT EXISTS AssociatedTeams (
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (team_id) REFERENCES Teams(id)
 );
+/*
+A <<AssociatedSkill(s)>> is a linking table that links <<User(s)>> to a <<Skill(s)>>
+ */
+CREATE TABLE IF NOT EXISTS AssociatedSkills (
+    id INT NOT NULL PRIMARY KEY,
+    user_id INT NOT NULL,
+    skill_id INT NOT NULL,
+    rating INT NOT NULL
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (skill_id) REFERENCES Skills(id)
+);
 
 /*
  A <<Skill>> for example Python.
