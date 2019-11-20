@@ -2,6 +2,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.comments;
 
 
 import lombok.Data;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.Advert;
 
 import javax.persistence.*;
 
@@ -63,9 +64,9 @@ public class Comment {
      * @return advert that the Comment is for.
      *
      */
-//    @ManyToOne
-//    @JoinColumn(name = "advert_id")
-//    private Advert advert;
+    @ManyToOne
+    @JoinColumn(name = "advert_id")
+    private Advert advert;
 
 
     /**
