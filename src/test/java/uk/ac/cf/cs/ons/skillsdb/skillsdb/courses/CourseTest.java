@@ -6,8 +6,9 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.Users.User;
 
 import java.time.LocalDateTime;
 
+import static org.junit.Assert.assertEquals;
 
-class CourseTest {
+public class CourseTest {
 
     private Course course;
 
@@ -36,7 +37,7 @@ class CourseTest {
 
     @Test
     public void userCanChangePrice() {
-        assertEquals(50.50, course.price(50.50));
+        assertEquals(50.50, course.price(50.50).price(), 0);
     }
 
 }

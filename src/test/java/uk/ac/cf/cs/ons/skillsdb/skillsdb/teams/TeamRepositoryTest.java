@@ -6,6 +6,7 @@ import static org.junit.Assert.assertFalse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -14,7 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 public class TeamRepositoryTest {
 
-    @Autowired TeamRepository repository;
+    @Autowired
+    private TeamRepository repository;
 
     private Team team;
 
@@ -44,6 +46,6 @@ public class TeamRepositoryTest {
         repository.save(team.teamName("TeamTwo"));
         repository.save(team.teamName("TeamThree"));
 
-        assertEquals("TeamThree", repository.findByName("TeamThree").get());
+        assertEquals("TeamThree", repository.findByTeamName("TeamThree").get().teamName());
     }
 }
