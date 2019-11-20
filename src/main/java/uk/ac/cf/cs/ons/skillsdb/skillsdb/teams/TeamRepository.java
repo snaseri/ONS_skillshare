@@ -24,5 +24,5 @@ public interface TeamRepository extends CrudRepository<Team, Long> {
      * @param name of the team you want to find.
      * @return Optional of the selected team.
      */
-    Optional <Team> findByName(String name);
+    Optional<Team> findByTeamName(String name);
 }
