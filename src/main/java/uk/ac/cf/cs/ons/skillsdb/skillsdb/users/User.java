@@ -3,6 +3,10 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 import lombok.Data;
 
 import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.Set;
 
 /**
  * User is a representation of a user of the SkillsDB.
@@ -15,6 +19,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
 public class User {
 
   /**
@@ -27,6 +33,30 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private long id;
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
   /**
    * Username of the user.
@@ -48,5 +78,28 @@ public class User {
    */
   @Column(name = "password")
   private String password;
+
+  public int getActive() {
+    return active;
+  }
+
+  public void setActive(int active) {
+    this.active = active;
+  }
+
+  @Column(name = "active")
+  private int active;
+
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private Set<Role> roles;
+
+
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
+  }
+
+
 
 }

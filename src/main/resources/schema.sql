@@ -7,7 +7,9 @@ SET IGNORECASE=TRUE;
 CREATE TABLE IF NOT EXISTS Users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
     username VARCHAR(30) NOT NULL,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(100) NOT NULL,
+    active INT
+
 );
 
 /*
@@ -31,6 +33,18 @@ CREATE TABLE IF NOT EXISTS AssociatedTeams (
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (team_id) REFERENCES Teams(id)
 );
+
+
+
+CREATE TABLE IF NOT EXISTS user_role (
+
+    USER_ID INT NOT NULL,
+    ROLE_ID INT NOT NULL
+
+);
+
+
+
 
 /*
  A <<Skill>> for example Python.

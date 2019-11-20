@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<form th:action="@{/registration}" method="get">
+<form th:action="@{/register}" method="get">
     <button class="btn btn-md btn-warning btn-block" type="Submit">Register</button>
 </form>
 
@@ -20,7 +20,7 @@
         <h3 class="form-signin-heading" th:text="Welcome"></h3>
         <br/>
 
-        <input type="text" id="username" name="username"  th:placeholder="Email"
+        <input type="text" id="username" name="username"  th:placeholder="Username"
                class="form-control" /> <br/>
         <input type="password"  th:placeholder="Password"
                id="password" name="password" class="form-control" /> <br />
