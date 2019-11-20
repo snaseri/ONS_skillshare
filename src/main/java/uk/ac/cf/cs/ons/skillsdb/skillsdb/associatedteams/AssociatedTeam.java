@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
  * @since   2019-11-19
  * @url     https://spring.io/guides/gs/accessing-data-jpa/
  */
-
 @Data
 @Entity
 @Table(name = "associatedteams")
@@ -40,6 +39,7 @@ public class AssociatedTeam {
      * @param user_id A user from the Users table.
      * @return user form the Users table.
      */
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -49,6 +49,7 @@ public class AssociatedTeam {
      * @param team_id A team from the teams table.
      * @return team form the teams table.
      */
+    @OneToOne
     @JoinColumn(name = "team_id")
     private Team team;
 
