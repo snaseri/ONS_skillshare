@@ -9,8 +9,5 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.types;
  * @see     Type
  */
 public enum AdvertType {
-  ACCELERATION,
-  TUTORING,
-  ADVICE,
-  ASSITANCE
+  ACCELERATION, TUTORING, ADVICE, ASSISTANCE
 }

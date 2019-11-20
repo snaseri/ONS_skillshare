@@ -1,7 +1,7 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.types;
 
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,8 +24,8 @@ public class TypesTest {
 
     @Test
     public void typeAdvertTypeCanChange() {
-      type.name(AdvertType.ASSITANCE);
-      assertEquals(AdvertType.ASSITANCE, type.name());
+      type.name(AdvertType.ASSISTANCE);
+      assertEquals(AdvertType.ASSISTANCE, type.name());
     }
 
 }
