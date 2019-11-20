@@ -41,6 +41,8 @@ CREATE TABLE IF NOT EXISTS AssociatedSkills (
     user_id INT NOT NULL,
     skill_id INT NOT NULL,
     rating INT NOT NULL
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (skill_id) REFERENCES Skills(id)
 );
 
 /*
