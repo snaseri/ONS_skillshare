@@ -2,7 +2,6 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.comments;
 
 
 import lombok.Data;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.Advert;
 
 import javax.persistence.*;
 
@@ -60,13 +59,13 @@ public class Comment {
      * Comment who created and is running Comment
      *
      *
-     * @param advert new course for the Comment.
+     * @param advert New advert for the comment.
      * @return advert that the Comment is for.
      *
      */
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "advert_id")
-    private Advert advert;
+//    @ManyToOne
+//    @JoinColumn(name = "advert_id")
+//    private Advert advert;
 
 
     /**

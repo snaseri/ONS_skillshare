@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * UserRepository allows the caller to access to the Users data source.
+ * UserRepository allows the caller to access to the users data source.
  *
  * @author  Sepehr Naseri
  * @version 1.0

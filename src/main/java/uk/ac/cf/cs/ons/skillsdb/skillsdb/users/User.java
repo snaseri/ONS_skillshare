@@ -14,7 +14,7 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
   /**
