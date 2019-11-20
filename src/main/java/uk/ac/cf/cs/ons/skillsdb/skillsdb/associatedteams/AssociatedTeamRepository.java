@@ -16,17 +16,7 @@ import java.util.Optional;
  * @see     AssociatedTeam
  * @url     https://spring.io/guides/gs/accessing-data-jpa/
  */
-
 @Repository
 public interface AssociatedTeamRepository extends CrudRepository<AssociatedTeam, Long> {
-
-    /**
-     * Find a team based on user
-     *
-     * TODO: Potentially talk about this and see whether this is really needed.
-     *
-     * @param user which is in a team
-     * @return List of the teams in which a user is in
-     */
-    List<AssociatedTeam> findByUser(String user);
+    // TODO: Add any needed queries here...
 }
