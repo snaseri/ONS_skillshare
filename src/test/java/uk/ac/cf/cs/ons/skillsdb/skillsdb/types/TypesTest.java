@@ -24,8 +24,8 @@ public class TypesTest {
 
     @Test
     public void typeAdvertTypeCanChange() {
-      type.name(AdvertType.ASSITANCE);
-      assertEquals(AdvertType.ASSITANCE, type.name());
+      type.name(AdvertType.ASSISTANCE);
+      assertEquals(AdvertType.ASSISTANCE, type.name());
     }
 
 }
