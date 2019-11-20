@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS Types (
 );
 
 /*
- A <<User>> can create a <<Course>> for a <<Skill>>
+ A <<User>> can create a <<Review>> for a <<Skill>>
  */
 CREATE TABLE IF NOT EXISTS Courses (
     id INT NOT NULL PRIMARY KEY,
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS Adverts (
 );
 
 /*
- A <<User>> can leave a review on a <<Course>>.
+ A <<User>> can leave a review on a <<Review>>.
 */
 CREATE TABLE IF NOT EXISTS Reviews (
     id INT NOT NULL PRIMARY KEY,
