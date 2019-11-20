@@ -57,7 +57,7 @@ public class Review {
 
 
     /**
-     * review who created and is running Review
+     * course of the Review
      *
      *
      * @param course new course for the Review.
@@ -70,7 +70,7 @@ public class Review {
 
 
     /**
-     * review who created and is running Review
+     * user who created the Review
      *
      *
      * @param review_creator new review for the Review.
