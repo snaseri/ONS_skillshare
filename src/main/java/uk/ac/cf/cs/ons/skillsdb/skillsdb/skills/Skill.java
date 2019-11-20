@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 /**
- * Skill represents a Skill a User, Review, or Advert could have or require.
+ * Skill represents a Skill a User, Comment, or Advert could have or require.
  *
  * @author  Kyle Davies
  * @version 1.0

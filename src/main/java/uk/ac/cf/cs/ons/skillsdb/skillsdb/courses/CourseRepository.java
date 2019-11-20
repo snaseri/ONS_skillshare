@@ -17,7 +17,7 @@ import java.util.Optional;
 public interface CourseRepository {
 
     /**
-     * Find a Review by id.
+     * Find a Comment by id.
      *
      * @param id Of the course you want to find.
      * @return Optional Of the selected course.
@@ -26,7 +26,7 @@ public interface CourseRepository {
 
 
     /**
-     * Find a Review by name.
+     * Find a Comment by name.
      *
      * @param name Of the course you want to find.
      * @return List Of the selected courses.
@@ -34,7 +34,7 @@ public interface CourseRepository {
     List<Course> findByName(String name);
 
     /**
-     * Find a Review by price.
+     * Find a Comment by price.
      *
      * @param price Of the course you want to find.
      * @return List Of the courses with selected price.

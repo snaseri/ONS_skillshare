@@ -1,13 +1,13 @@
-package uk.ac.cf.cs.ons.skillsdb.skillsdb.reviews;
+package uk.ac.cf.cs.ons.skillsdb.skillsdb.comments;
 
 
 import lombok.Data;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.courses.Course;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.Advert;
 
 import javax.persistence.*;
 
 /**
- * review is a representation of a review of the SkillsDB.
+ * Comment is a representation of a Comment of the SkillsDB.
  *
  * @author  Sepehr Naseri
  * @version 1.0
@@ -17,14 +17,14 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "Reviews")
-public class Review {
+@Table(name = "Comments")
+public class Comment {
 
     /**
-     * Id of the review.
+     * Id of the Comment.
      *
-     * @param id New id for the review.
-     * @return id of the review.
+     * @param id New id for the Comment.
+     * @return id of the Comment.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,24 +57,24 @@ public class Review {
 
 
     /**
-     * review who created and is running Comment
+     * Comment who created and is running Comment
      *
      *
-     * @param course new course for the Comment.
-     * @return course that the Comment is for.
+     * @param advert new course for the Comment.
+     * @return advert that the Comment is for.
      *
      */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "course_id")
-    private Course course;
+    @JoinColumn(name = "advert_id")
+    private Advert advert;
 
 
     /**
-     * review who created and is running Comment
+     * Comment who created and is running Comment
      *
      *
-     * @param review_creator new review for the Comment.
-     * @return review of the Comment.
+     * @param user_creator new User for the Comment.
+     * @return user who left the Comment.
      *
      */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
