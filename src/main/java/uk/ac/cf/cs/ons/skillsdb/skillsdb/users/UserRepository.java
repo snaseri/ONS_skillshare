@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
- * UserRepository allows the caller to access to the Users data source.
+ * UserRepository allows the caller to access to the users data source.
  *
  * @author  Kyle Davies
  * @version 1.0

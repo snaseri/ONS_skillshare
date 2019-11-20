@@ -2,10 +2,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
@@ -17,6 +14,8 @@ import java.time.LocalDateTime;
  * @since   2019-11-20
  */
 @Data
+@Entity
+@Table(name = "Adverts")
 public class Advert {
 
   /**
