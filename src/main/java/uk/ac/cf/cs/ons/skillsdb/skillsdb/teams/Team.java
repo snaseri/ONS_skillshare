@@ -4,6 +4,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.teams;
 import lombok.Data;
 
 import javax.persistence.*;
+
 /**
  * Team is a representation of a team of the SkillsDB.
  *
@@ -12,10 +13,9 @@ import javax.persistence.*;
  * @since   2019-11-19
  * @url     https://spring.io/guides/gs/accessing-data-jpa/
  */
-
 @Data
 @Entity
-@Table(name = "teams")
+@Table(name = "Teams")
 public class Team {
 
     /**
