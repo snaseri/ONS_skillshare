@@ -101,7 +101,8 @@ public class Course {
      * @return user of the course.
      *
      */
-    @Column(name = "user_creator")
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_creator")
     private User user;
 
 
