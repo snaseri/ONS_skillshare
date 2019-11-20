@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS Skills (
  A <<Type>> which an <<Advert>> can be (Mentor, Advice, Assist Accelerate)
  */
 CREATE TABLE IF NOT EXISTS Types (
-    id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL
 );
 
