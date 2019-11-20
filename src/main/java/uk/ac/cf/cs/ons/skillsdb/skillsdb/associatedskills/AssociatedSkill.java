@@ -6,6 +6,7 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.Skill;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.Users.User;
 
 import javax.persistence.*;
+
 /**
  * AssociatedSkills is a representation of a user and a skill of the SkillsDB.
  *
@@ -14,10 +15,9 @@ import javax.persistence.*;
  * @since   2019-11-19
  * @url     https://spring.io/guides/gs/accessing-data-jpa/
  */
-
 @Data
 @Entity
-@Table(name = "associatedskills")
+@Table(name = "AssociatedSkills")
 public class AssociatedSkill {
 
 
@@ -38,6 +38,7 @@ public class AssociatedSkill {
      * @param user_id A user from the Users table.
      * @return user form the Users table.
      */
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -47,6 +48,7 @@ public class AssociatedSkill {
      * @param skill_id A skill from the skills table.
      * @return skill from the skills table.
      */
+    @OneToOne
     @JoinColumn(name = "skill_id")
     private Skill skill;
 
@@ -56,7 +58,6 @@ public class AssociatedSkill {
      * @param rating New rating for the associatedskill.
      * @return rating for the associatedskill.
      */
-
     @Column(name = "rating")
     private int rating;
 
