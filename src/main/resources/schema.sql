@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Users (
 CREATE TABLE IF NOT EXISTS Teams (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50),
-    descripion TEXT
+    description TEXT
 );
 
 /*
@@ -31,6 +31,17 @@ CREATE TABLE IF NOT EXISTS AssociatedTeams (
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (team_id) REFERENCES Teams(id)
 );
+
+
+/*
+ A <<Skill>> for example Python.
+ */
+CREATE TABLE IF NOT EXISTS Skills (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    description TEXT(300) NOT NULL
+);
+
 /*
 A <<AssociatedSkill(s)>> is a linking table that links <<User(s)>> to a <<Skill(s)>>
  */
@@ -41,15 +52,6 @@ CREATE TABLE IF NOT EXISTS AssociatedSkills (
     rating INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (skill_id) REFERENCES Skills(id)
-);
-
-/*
- A <<Skill>> for example Python.
- */
-CREATE TABLE IF NOT EXISTS Skills (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    description TEXT(300) NOT NULL
 );
 
 /*
