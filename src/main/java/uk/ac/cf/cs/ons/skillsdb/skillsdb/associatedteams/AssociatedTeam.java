@@ -22,16 +22,39 @@ import java.time.LocalDateTime;
 @Table(name = "associatedteams")
 public class AssociatedTeam {
 
+
+    /**
+     * Id of the assoiciatedteam.
+     *
+     * @param id New id for the associatedteam.
+     * @return id for the associatedteam.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
+    /**
+     * User id that is linked to the id within the Users table in the SkillsDB.
+     *
+     * @param user_id A user from the users table.
+     * @return user form the users table.
+     */
     @JoinColumn(name = "user_id")
     private User user;
 
+    /**
+     * Team id that is linked to the id within the Teams table in the SkillsDB.
+     *
+     * @param team_id A team from the teams table.
+     * @return team form the teams table.
+     */
     @JoinColumn(name = "team_id")
     private Team team;
+
+    /**
+     * The data and time that a particular user left the associatedteam.
+     */
 
     @Column(name = "left_team")
     private LocalDateTime leftTeam;

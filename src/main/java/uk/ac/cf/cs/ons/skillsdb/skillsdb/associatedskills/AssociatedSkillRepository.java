@@ -4,9 +4,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 
+import java.util.List;
 import java.util.Optional;
 
-@Repository
+
 /**
  * AssociatedSkillRepository allows the caller to access to the associatedskills data source.
  *
@@ -16,7 +17,15 @@ import java.util.Optional;
  * @see     AssociatedSkill
  * @url     https://spring.io/guides/gs/accessing-data-jpa/
  */
+
+@Repository
 public interface AssociatedSkillRepository extends CrudRepository<AssociatedSkill, Long> {
 
-    Optional<AssociatedSkill> findByUser(String user);
+    /**
+     * Be able to find a user based on the skills that they have declared.
+     *
+     * @param skill of the user that you want to find.
+     * @return List of users that have the searched skill.
+     */
+    List<AssociatedSkill> findBySkill(String skill);
 }

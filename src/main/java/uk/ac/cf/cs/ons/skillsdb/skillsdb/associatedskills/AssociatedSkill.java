@@ -20,16 +20,42 @@ import javax.persistence.*;
 @Table(name = "associatedskills")
 public class AssociatedSkill {
 
+
+    /**
+     * Id for the associatedskill.
+     *
+     * @parama id New id for the associatyedskill.
+     * @return id for the associatedskill.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
+    /**
+     * User id that is linked to the id within the Users table in the SkillsDB.
+     *
+     * @param user_id A user from the users table.
+     * @return user form the users table.
+     */
     @JoinColumn(name = "user_id")
     private User user;
 
+    /**
+     * Skill id that is linked to the id within the Skills table in the SkillsDB.
+     *
+     * @param skill_id A skill from the skills table.
+     * @return skill from the skills table.
+     */
     @JoinColumn(name = "skill_id")
     private Skill skill;
+
+    /**
+     * Rating of the skills.
+     *
+     * @param rating New rating for the associatedskill.
+     * @return rating for the associatedskill.
+     */
 
     @Column(name = "rating")
     private int rating;

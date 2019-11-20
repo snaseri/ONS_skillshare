@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
 /**
  * TeamRepository allows the caller to access to the teams data source.
  *
@@ -15,7 +14,15 @@ import java.util.Optional;
  * @see     Team
  * @url     https://spring.io/guides/gs/accessing-data-jpa/
  */
+
+@Repository
 public interface TeamRepository extends CrudRepository<Team, Long> {
 
+    /**
+     * Find a Team by its name.
+     *
+     * @param name of the team you want to find.
+     * @return Optional of the selected team.
+     */
     Optional <Team> findByName(String name);
 }

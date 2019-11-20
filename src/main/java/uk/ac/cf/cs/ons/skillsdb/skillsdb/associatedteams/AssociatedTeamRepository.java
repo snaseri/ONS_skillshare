@@ -4,9 +4,9 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.associatedteams;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
-@Repository
 /**
  * AssociatedTeamRepository allows the caller to access to the associatedteams data source.
  *
@@ -16,7 +16,17 @@ import java.util.Optional;
  * @see     AssociatedTeam
  * @url     https://spring.io/guides/gs/accessing-data-jpa/
  */
+
+@Repository
 public interface AssociatedTeamRepository extends CrudRepository<AssociatedTeam, Long> {
 
-    Optional<AssociatedTeam> findByUser(String user);
+    /**
+     * Find a team based on user
+     *
+     * TODO: Potentially talk about this and see whether this is really needed.
+     *
+     * @param user which is in a team
+     * @return List of the teams in which a user is in
+     */
+    List<AssociatedTeam> findByUser(String user);
 }
