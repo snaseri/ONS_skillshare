@@ -1,4 +1,4 @@
-package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
+package uk.ac.cf.cs.ons.skillsdb.skillsdb.Users;
 
 import lombok.Data;
 
@@ -14,7 +14,7 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 public class User {
 
   /**

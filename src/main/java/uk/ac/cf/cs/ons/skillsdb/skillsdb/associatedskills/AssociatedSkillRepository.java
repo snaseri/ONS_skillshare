@@ -25,7 +25,7 @@ public interface AssociatedSkillRepository extends CrudRepository<AssociatedSkil
      * Be able to find a user based on the skills that they have declared.
      *
      * @param skill of the user that you want to find.
-     * @return List of users that have the searched skill.
+     * @return List of Users that have the searched skill.
      */
     List<AssociatedSkill> findBySkill(String skill);
 }

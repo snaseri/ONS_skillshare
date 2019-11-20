@@ -2,7 +2,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.courses;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.Users.User;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
+package uk.ac.cf.cs.ons.skillsdb.skillsdb.Users;
 
 import org.junit.Before;
 import org.junit.Test;

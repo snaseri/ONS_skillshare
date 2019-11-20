@@ -3,7 +3,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.associatedskills;
 
 import lombok.Data;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.Skill;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.Users.User;
 
 import javax.persistence.*;
 /**
@@ -35,8 +35,8 @@ public class AssociatedSkill {
     /**
      * User id that is linked to the id within the Users table in the SkillsDB.
      *
-     * @param user_id A user from the users table.
-     * @return user form the users table.
+     * @param user_id A user from the Users table.
+     * @return user form the Users table.
      */
     @JoinColumn(name = "user_id")
     private User user;

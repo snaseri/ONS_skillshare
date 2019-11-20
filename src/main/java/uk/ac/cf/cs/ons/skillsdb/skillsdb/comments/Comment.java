@@ -79,7 +79,7 @@ public class Comment {
      */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_creator")
-    private uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User user;
+    private uk.ac.cf.cs.ons.skillsdb.skillsdb.Users.User user;
 
 
 }

@@ -1,4 +1,4 @@
-package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
+package uk.ac.cf.cs.ons.skillsdb.skillsdb.Users;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
- * UserRepository allows the caller to access to the users data source.
+ * UserRepository allows the caller to access to the Users data source.
  *
  * @author  Kyle Davies
  * @version 1.0
