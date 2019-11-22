@@ -1,4 +1,4 @@
-package uk.ac.cf.cs.ons.skillsdb.skillsdb.Users;
+package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,10 +23,10 @@ public class UserRepositoryTest {
 
   @Before
   public void setup() {
-    user = new User()
-            .id(1)
-            .username("JohnDoe")
-            .password("Password");
+    user = new User();
+    user.setId(1);
+    user.setUsername("JohnDoe");
+    user.setPassword("Password");
   }
 
   @Test
@@ -46,34 +46,38 @@ public class UserRepositoryTest {
 
   @Test
   public void userCanBeChanged() {
-    repository.save( user.username("JohnDoe") );
+    user.setUsername("JohnDope");
+    repository.save(user);
 
-    assertEquals( user, repository.findById(1L).get() );
+    assertEquals(user.getUsername(), repository.findById(1L).get().getUsername() );
   }
 
   @Test
   public void userCanBeFoundByUsername() {
 
-    repository.save(new User()
-            .id(2)
-            .username("Smith")
-            .password("Password1"));
+    User u1 = new User();
+    User u2 = new User();
+    User u3 = new User();
 
-    repository.save(new User()
-            .id(3)
-            .username("John")
-            .password("Password2"));
+    u1.setId(1);
+    u2.setId(2);
+    u3.setId(3);
 
-    repository.save(new User()
-            .id(4)
-            .username("Davies")
-            .password("Password3"));
+    u1.setUsername("User1");
+    u2.setUsername("User2");
+    u3.setUsername("User3");
 
-    Optional<User> usr = repository.findByUsername("Smith");
+    u1.setPassword("Password1");
+    u2.setPassword("Password2");
+    u3.setPassword("Password3");
 
-    assertEquals( "Smith", usr.get().username() );
+    repository.save(u1);
+    repository.save(u2);
+    repository.save(u3);
+
+    Optional<User> usr = repository.findByUsername("User3");
+
+    assertEquals("User3", usr.get().getUsername() );
   }
-
-
 
 }
