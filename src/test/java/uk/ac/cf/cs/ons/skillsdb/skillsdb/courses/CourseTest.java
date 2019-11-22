@@ -14,30 +14,33 @@ public class CourseTest {
 
     @Before
     public void setup() {
-        course = new Course()
-                .id(1)
-                .name("Python")
-                .description("teaching lots of python")
-                .isFree(false)
-                .price(50.00)
-                .date(LocalDateTime.now())
-                .user(new User());
+        course = new Course();
+        course.setId(1);
+        course.setName("Python");
+        course.setDescription("teaching lots of python");
+        course.setIsFree(false);
+        course.setPrice(50.00);
+        course.setDate(LocalDateTime.now());
+        course.setUser(new User());
 
     }
 
     @Test
     public void userCanChangeName() {
-        assertEquals("Josh", course.name("Josh").name());
+      course.setName("Josh");
+      assertEquals("Josh", course.getName());
     }
 
     @Test
     public void userCanChangeDescripton() {
-        assertEquals("Josh", course.description("Josh").description());
+      course.setDescription("Josh");
+      assertEquals("Josh", course.getDescription());
     }
 
     @Test
     public void userCanChangePrice() {
-        assertEquals(50.50, course.price(50.50).price(), 0);
+      course.setPrice(50.50);
+      assertEquals(50.50, course.getPrice(), 0);
     }
 
 }
