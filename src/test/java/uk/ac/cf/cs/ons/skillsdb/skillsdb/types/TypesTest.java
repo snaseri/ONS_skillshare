@@ -11,21 +11,21 @@ public class TypesTest {
 
     @Before
     public void setup() {
-      type = new Type()
-              .id(1)
-              .name(AdvertType.ADVICE);
+      type = new Type();
+      type.setId(1);
+      type.setName(AdvertType.ADVICE);
     }
 
     @Test
     public void typeIdCanChange() {
-      type.id(2);
-      assertEquals( 2, type.id() );
+      type.setId(2);
+      assertEquals( 2, type.getId() );
     }
 
     @Test
     public void typeAdvertTypeCanChange() {
-      type.name(AdvertType.ASSISTANCE);
-      assertEquals(AdvertType.ASSISTANCE, type.name());
+      type.setName(AdvertType.ASSISTANCE);
+      assertEquals(AdvertType.ASSISTANCE, type.getName());
     }
 
 }
