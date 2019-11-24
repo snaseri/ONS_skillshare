@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Advert represents an Advertisement that a User can post
@@ -79,7 +80,14 @@ public class Advert {
    * @param posted, New DateTime that Advert was posted.
    * @return posted DateTime of Advert.
    */
+  @Column(name = "posted", columnDefinition = "TIMESTAMP")
   private LocalDateTime posted;
+
+
+  public String prettyDate() {
+    return posted.format (DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") );
+  }
+
 
 }
 
