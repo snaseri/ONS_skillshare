@@ -1,4 +1,4 @@
-package uk.ac.cf.cs.ons.skillsdb.skillsdb.Users;
+package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
