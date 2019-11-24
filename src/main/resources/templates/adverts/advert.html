@@ -15,7 +15,16 @@
       <!-- Header -->
     </div>
 
+    <div th:replace=" fragments/navbar.html :: pagebar">
+        <!-- Page Navbar -->
+    </div>
+
+
+
     <div class="container">
+
+
+
         <small>Title</small>
         <p th:text="*{advert.title}"></p>
         <small>Description</small>

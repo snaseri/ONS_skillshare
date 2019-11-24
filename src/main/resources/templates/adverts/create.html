@@ -15,8 +15,17 @@
       <!-- Header -->
     </div>
 
+    <nav th:replace=" fragments/navbar.html :: pagebar">
+      <!-- Page Navbar -->
+    </nav>
+
+
+
     <div class="row">
       <div class="container">
+
+
+
         <h3 class="black">Create a Advert</h3>
         <div class="col-sm">
           <form th:replace=" adverts/form :: form">
