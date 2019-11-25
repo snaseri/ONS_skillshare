@@ -40,6 +40,14 @@
         </input>
         <div class="alert alert-danger" th:errors="*{date}" th:if="${#fields.hasErrors('date')}"></div>
       </div>
+      <!-- Skills -->
+      <div class="form-group">
+        <label th:name="*{skillId}">Skill</label>
+        <select class="form-control" th:field="*{skillId}">
+          <option value="0">Please select a Skill</option>
+          <option th:each="skill: ${skills}" th:value="${skill.id}" th:text="${skill.name}"></option>
+        </select>
+      </div>
       <button class="btn btn-primary" type="submit">Submit</button>
     </form>
   </body>
