@@ -2,6 +2,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,13 +15,13 @@ public class UserQueries implements UserFinder {
         userRepository = repo;
     }
 
-    public Optional<User> findUserByindex(Long index) {
+    public Optional<User> findUserByIndex(Long index) {
 
         return userRepository.findById(index.longValue());
 
     }
 
-    public Optional<User> findUserBySearch(String searchTerm){
+    public List<User> findUserBySearch(String searchTerm){
 
         return userRepository.findByUsername(searchTerm);
     }

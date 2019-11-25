@@ -3,6 +3,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -23,7 +24,7 @@ public interface UserRepository  {
    * @param username Of the user you want to find.
    * @return Optional Of the selected user.
    */
-  Optional<uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User> findByUsername(String username);
+  List<User> findByUsername(String username);
 
   Optional<User> findById(Long index);
 
