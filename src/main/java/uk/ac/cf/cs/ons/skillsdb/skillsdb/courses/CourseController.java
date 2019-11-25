@@ -2,25 +2,41 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.courses;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class CourseController {
 
-    private final static String CREATE_PAGE = "courses/create";
-    private final static String COURSES_PAGE = "courses/course";
+    private CourseRepository courseRepo;
 
-
-    public CourseController() {
-
+    public CourseController(CourseRepository aRepo) {
+        courseRepo = aRepo;
     }
 
-    @RequestMapping(path = "/course/create", method = RequestMethod.GET)
-    public String createCourse(Model model) {
 
-        model.addAttribute("sponsorKey", new CourseForm());
-        return null;
+    @GetMapping(path = "/course/create")
+    public String createCourse(Model model) {
+        model.addAttribute("course", new Course());
+        return "courses/create";
+    }
+
+    @PostMapping("course/create")
+    public String submitAdvert(@ModelAttribute("course") @Valid Course course, BindingResult result) {
+
+        if ( result.hasErrors() ) {
+            return "courses/create";
+        }
+
+        //TODO set the user as the logged in user
+        course.setUser(null);
+        courseRepo.save(course);
+
+        return "redirect:/course/" + course.getId();
     }
 
 }

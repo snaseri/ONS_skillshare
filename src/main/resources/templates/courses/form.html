@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <body>
-    <form action="#" th:action="@{/advert/create}" th:object="${advert}" th:fragment="form" method="POST">
+    <form action="#" th:action="@{/course/create}" th:object="${course}" th:fragment="form" method="POST">
       <!-- Title-->
       <div class="form-group">
-        <label th:name="*{title}">Title</label>
-        <input class="form-control" type="text" th:field="*{title}">
-        <div class="alert alert-danger" th:errors="*{title}" th:if="${#fields.hasErrors('title')}"></div>
+        <label th:name="*{name}">Name</label>
+        <input class="form-control" type="text" th:field="*{name}">
+        <div class="alert alert-danger" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></div>
       </div>
       <!-- Description -->
       <div class="form-group">
@@ -15,21 +15,30 @@
         </textarea>
         <div class="alert alert-danger" th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></div>
       </div>
-      <!-- Skills -->
-      <div class="form-group">
-        <label th:name="*{skillId}">Skill</label>
-        <select class="form-control" th:field="*{skillId}">
-          <option value="0">Please select a Skill</option>
-          <option th:each="skill: ${skills}" th:value="${skill.id}" th:text="${skill.name}"></option>
-        </select>
+      <!-- isFree -->
+      <div class="form-group form-check">
+        <input aria-describedby="Please enter the amount you would like to donate"
+               class="form-check-input"
+               th:field="*{isFree}"
+               type="checkbox"/>
+        <label class="form-check-label"
+               th:for="isFree">
+          Please tick this box to confirm the course is free to attend
+        </label>
       </div>
-      <!-- Types -->
+      <!-- Price -->
       <div class="form-group">
-        <label th:name="*{typeId}">Type</label>
-        <select class="form-control" th:field="*{typeId}">
-          <option value="0">Please select a Type</option>
-          <option th:each="type: ${types}" th:value="${type.id}" th:text="${type.name}"></option>
-        </select>
+        <label th:name="*{price}">Price</label>
+        <textarea class="form-control" type="text" th:field="*{price}">
+        </textarea>
+        <div class="alert alert-danger" th:errors="*{price}" th:if="${#fields.hasErrors('description')}"></div>
+      </div>
+      <!-- Date -->
+      <div class="form-group">
+        <label th:name="*{date}">Date</label>
+        <input class="form-control" type="date" th:field="*{date}">
+        </input>
+        <div class="alert alert-danger" th:errors="*{date}" th:if="${#fields.hasErrors('date')}"></div>
       </div>
       <button class="btn btn-primary" type="submit">Submit</button>
     </form>

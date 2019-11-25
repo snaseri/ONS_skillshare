@@ -2,10 +2,12 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.courses;
 
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.NumberFormat;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.validation.constraints.Min;
 
 /**
  * User is a representation of a user of the SkillsDB.
@@ -41,6 +43,7 @@ public class Course {
      * @return name of the course.
      */
     @Column(name = "name")
+    @Length(min = 5, max = 30, message = "Course name has to be 5-30 characters long")
     private String name;
 
 
@@ -53,7 +56,9 @@ public class Course {
      * @return description of the course.
      *
      */
+
     @Column(name = "description")
+    @Length(min = 5, max = 30, message = "Course name has to be 5-30 characters long")
     private String description;
 
 
@@ -78,6 +83,8 @@ public class Course {
      *
      */
     @Column(name = "price")
+    @Min(0)
+    @NumberFormat(style = NumberFormat.Style.DEFAULT)
     private Double price;
 
 
@@ -91,7 +98,7 @@ public class Course {
      *
      */
     @Column(name = "date")
-    private LocalDateTime date;
+    private String date;
 
     /**
      * User who created and is running course
