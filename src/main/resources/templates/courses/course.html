@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>course:</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+  </head>
+  <body>
+
+    <div th:replace=" fragments/navbar.html :: navbar">
+      <!-- Navigation -->
+    </div>
+
+    <div th:replace=" fragments/header.html :: header">
+      <!-- Header -->
+    </div>
+
+    <div th:replace=" fragments/navbar.html :: pagebar">
+        <!-- Page Navbar -->
+    </div>
+
+
+
+    <div class="container">
+
+
+
+<!--        <small>Course name</small>-->
+<!--        <p th:text="*{course.name}"></p>-->
+<!--        <small>Description</small>-->
+<!--        <p th:text="*{course.description}"></p>-->
+<!--        <small>Free</small>-->
+<!--        <p th:text="*{course.isFree}"></p>-->
+<!--        <small>Price</small>-->
+<!--        <p th:text="*{course.price}"></p>-->
+<!--        <small>Course Date</small>-->
+<!--        <p th:text="*{course.date}"></p>-->
+    </div>
+
+  </body>
+</html>

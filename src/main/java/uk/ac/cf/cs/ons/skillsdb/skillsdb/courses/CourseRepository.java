@@ -42,6 +42,10 @@ public interface CourseRepository {
     List<Course> findByPrice(Double price);
 
 
+
+    public Course save(Course aCourse);
+
+
 }
 
 
