@@ -1,9 +1,11 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Advert represents an Advertisement that a User can post
@@ -63,6 +65,7 @@ public class Advert {
    * @return name of Advert.
    */
   @Column(name = "name")
+  @Length(min = 10, max = 50, message = "Title should be more than 10 characters, and less than 30 characters.")
   private String title;
 
   /**
@@ -71,6 +74,7 @@ public class Advert {
    * @param description, New description of Advert.
    * @return description of Advert.
    */
+  @Length(min = 30, max = 300, message = "Description should be more than 30 characters, and less than 300 characters.")
   private String description;
 
   /**
@@ -79,7 +83,14 @@ public class Advert {
    * @param posted, New DateTime that Advert was posted.
    * @return posted DateTime of Advert.
    */
+  @Column(name = "posted", columnDefinition = "TIMESTAMP")
   private LocalDateTime posted;
+
+
+  public String prettyDate() {
+    return posted.format (DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") );
+  }
+
 
 }
 
