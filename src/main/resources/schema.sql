@@ -5,8 +5,8 @@ SET IGNORECASE=TRUE;
  A <<User>> which e.g JohnDoe
  */
 CREATE TABLE IF NOT EXISTS Users (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
-    username VARCHAR(30) UNIQUE NOT NULL,
+    id INT PRIMARY KEY AUTO_INCREMENT ,
+    username VARCHAR(30) NOT NULL,
     password VARCHAR(100) NOT NULL
 );
 
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS Users (
  A <<Team>> which could be Software Engineers
  */
 CREATE TABLE IF NOT EXISTS Teams (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50),
     description TEXT
 );
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Teams (
  A <<AssoicatedTeam(s)>> is a linking table that links <<User(s)>> to a <<Team(s)>>
 */
 CREATE TABLE IF NOT EXISTS AssociatedTeams (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     team_id INT NOT NULL,
     left_team DATETIME,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS AssociatedTeams (
  A <<Skill>> for example Python.
  */
 CREATE TABLE IF NOT EXISTS Skills (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     description TEXT(300) NOT NULL
 );
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS Skills (
 A <<AssociatedSkill(s)>> is a linking table that links <<User(s)>> to a <<Skill(s)>>
  */
 CREATE TABLE IF NOT EXISTS AssociatedSkills (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     skill_id INT NOT NULL,
     rating INT NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS AssociatedSkills (
  A <<Type>> which an <<Advert>> can be (Mentor, Advice, Assist Accelerate)
  */
 CREATE TABLE IF NOT EXISTS Types (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL
 );
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS Types (
  A <<User>> can create a <<Comment>> for a <<Skill>>
  */
 CREATE TABLE IF NOT EXISTS Courses (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL ,
     description TEXT NOT NULL ,
     is_free BOOLEAN,
@@ -83,9 +83,9 @@ CREATE TABLE IF NOT EXISTS Courses (
  A <<User>> can create an <<Advert>>... with <<Type>>... for a <<Skill>>
 */
 CREATE TABLE IF NOT EXISTS Adverts (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL ,
-    descripion TEXT NOT NULL ,
+    description TEXT NOT NULL ,
     posted DATETIME,
     user_creator INT NOT NULL,
     skill_id INT NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS Adverts (
  A <<User>> can leave a review on a <<Comment>>.
 */
 CREATE TABLE IF NOT EXISTS Reviews (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(50) NOT NULL ,
     descripion TEXT NOT NULL ,
     course_id INT NOT NULL,
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS Reviews (
  A <<User>> can leave a comment on a <<Advert>>.
 */
 CREATE TABLE IF NOT EXISTS Comments (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(50) NOT NULL ,
     descripion TEXT NOT NULL ,
     advert_id INT NOT NULL,

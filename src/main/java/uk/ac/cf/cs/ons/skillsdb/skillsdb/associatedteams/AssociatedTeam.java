@@ -3,7 +3,8 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.associatedteams;
 
 import lombok.Data;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.teams.Team;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.Users.User;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
+
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
