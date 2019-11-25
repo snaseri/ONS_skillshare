@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 /**
- * TODO: ...
+ * AdvertController controls HTTP Protocols access to the Adverts.
  *
  * @author   Kyle Davies
  * @version  1.0
@@ -27,19 +27,20 @@ import java.util.Optional;
 public class AdvertController {
 
     private final static String CREATE_PAGE = "adverts/create";
-
     private final static String ADVERT_PAGE = "adverts/advert";
 
     private SkillRepository skillRepository;
-
     private TypeRepository typeRepository;
 
     private AdvertService service;
 
     /**
-     * TODO ...
+     * Create a instance of AdvertController by injecting an implementation of {@see SkillRepository}, {@see TypeRepository},
+     * and {@see TypeRepository} interfaces.
      *
      * @param service
+     * @param skillRepository
+     * @param typeRepository
      */
     @Autowired
     public AdvertController(AdvertService service, SkillRepository skillRepository, TypeRepository typeRepository) {
@@ -48,17 +49,16 @@ public class AdvertController {
         this.typeRepository = typeRepository;
     }
 
-
     /**
-     * TODO: ...
+     * Handles HTTP GET requests to /advert/create by returning a view.
      *
-     * @return
+     * @param model model
+     * @return view
      */
     @GetMapping("/create")
     public String createAdvert(Model model) {
         model.addAttribute("advert", new Advert());
-
-        // Used to prepopulate the dropdowns...
+        // Used to prepopulate the dropdowns for Skill, and Type.
         model.addAttribute("skills", skillRepository.findAll());
         model.addAttribute("types", typeRepository.findAll());
 
@@ -67,11 +67,12 @@ public class AdvertController {
 
 
     /**
-     * TODO: ...
+     * Handles HTTP POST requests to /advert/create/submit by returning a view of CREATE_PAGE if there is an error.
+     * Or by submitting the data and redirecting them to the view of the advert that they have created.
      *
-     * @param advert
-     * @param result
-     * @return
+     * @param advert created Advert.
+     * @param result result if there are errors
+     * @return view - the selected view to return
      */
     @PostMapping("/create")
     public String submitAdvert(@ModelAttribute("advert") @Valid Advert advert, BindingResult result) {
@@ -86,12 +87,15 @@ public class AdvertController {
         return "redirect:/advert/" + advert.getId();
     }
 
+    /**
+     * Handles HTTP GET requests to /advert/{1} by returning a view of ADVERT_PAGE if the ADVERT exists otherwise CREATE_PAGE
+     *
+     * @param id of Advert
+     * @param model page model
+     * @return view
+     */
     @GetMapping("/{id}")
     public String advertPage(@PathVariable("id") int id, Model model) {
-
-        // TODO: Remove AdvertNotFound, this can be prevented with Optional...
-        // TODO: Fix .get()
-
 
         String skill;
         String type;
@@ -102,9 +106,6 @@ public class AdvertController {
             skill = skillRepository.findById( advert.get().getSkillId() ).get().getName();
             type = typeRepository.findById( advert.get().getTypeId() ).get().getName().toString();
 
-            log.info(skill);
-            log.info(type);
-
             model.addAttribute("advert", advert.get());
             model.addAttribute("skill", skill);
             model.addAttribute("type", type);
@@ -113,9 +114,6 @@ public class AdvertController {
             e.printStackTrace();
             return CREATE_PAGE;
         }
-
-
-
 
         return ADVERT_PAGE;
     }
