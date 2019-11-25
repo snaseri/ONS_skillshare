@@ -68,10 +68,10 @@ CREATE TABLE IF NOT EXISTS Types (
 CREATE TABLE IF NOT EXISTS Courses (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL ,
-    descripion TEXT NOT NULL ,
+    description TEXT NOT NULL ,
     is_free BOOLEAN,
     price DECIMAL,
-    date DATETIME NOT NULL,
+    posted DATETIME NOT NULL,
     location VARCHAR(50),
     user_creator INT NOT NULL,
     skill_id INT NOT NULL,

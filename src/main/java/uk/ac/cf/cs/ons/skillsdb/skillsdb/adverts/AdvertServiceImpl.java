@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.exceptions.AdvertNotFoundException;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
@@ -41,6 +42,10 @@ public class AdvertServiceImpl implements AdvertService {
   @Override
   public void createAdvert(Advert advert) {
     log.info("Create Advert: " + advert);
+
+    // TODO: This should be automatic when users are created.
+    advert.setUserId(1);
+    advert.setPosted(LocalDateTime.now());
     repository.save(advert);
   }
 
