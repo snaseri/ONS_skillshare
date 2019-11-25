@@ -2,6 +2,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.enrolledoncourse;
 
 import lombok.Data;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.courses.Course;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 
 import javax.persistence.*;
 
@@ -32,7 +33,7 @@ public class EnrolledOnCourse {
      */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_creator")
-    private uk.ac.cf.cs.ons.skillsdb.skillsdb.Users.User user;
+    private User user;
 
 
 

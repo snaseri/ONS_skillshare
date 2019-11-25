@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface UserRepoJPA extends UserRepository, CrudRepository<User, Long> {
 
-    @Query(value = "select * from Users where upper(concat(username)) like concat('%', upper(:paramSearch), '%')", nativeQuery = true)
-    List<User> findByUsername(@Param("paramSearch")String searchTerm);
+    @Query(value = "SELECT * FROM Users WHERE UPPER(username) LIKE UPPER(:paramSearch)", nativeQuery = true)
+    List<User> findByUsername(@Param("paramSearch") String searchTerm);
 }
