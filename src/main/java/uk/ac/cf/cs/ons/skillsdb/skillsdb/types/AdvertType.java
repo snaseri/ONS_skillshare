@@ -1,5 +1,7 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.types;
 
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.Advert;
+
 /**
  * Types also have names which are noted below.
  *
@@ -9,5 +11,18 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.types;
  * @see     Type
  */
 public enum AdvertType {
-  ACCELERATION, TUTORING, ADVICE, ASSISTANCE
+  ACCELERATION("Acceleration"),
+  TUTORING("Tutoring"),
+  ADVICE("Advice"),
+  ASSISTANCE("Assitance");
+
+  private final String name;
+
+  AdvertType(String name) {
+    this.name = name;
+  }
+
+  public String toString() {
+    return name;
+  }
 }
