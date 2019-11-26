@@ -34,7 +34,7 @@
                         <th scope="row">
                             <a th:href="@{/user/{id} (id=${currUser.id})}"
                                th:id="'charityLink'+ ${currUser.id}">
-                                <span th:text="${currUser.name}"></span>
+                                <span th:text="${currUser.username}"></span>
                             </a>
                         </th>
                         <td th:text="${currUser.username}"></td>

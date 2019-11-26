@@ -1,19 +1,14 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.courses;
 
-
 import lombok.Data;
-<<<<<<< HEAD
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.NumberFormat;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.Skill;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.Users.User;
-=======
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
-
->>>>>>> 716535d67d554dc9a510480a52fd3326c4b04f98
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import java.time.LocalDateTime;
 
 /**
  * User is a representation of a user of the SkillsDB.
@@ -103,7 +98,7 @@ public class Course {
      *
      */
     @Column(name = "posted")
-    private String date;
+    private LocalDateTime date;
 
     /**
      * User who created and is running course

@@ -1,4 +1,4 @@
-package uk.ac.cf.cs.ons.skillsdb.skillsdb.Users;
+package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -23,10 +24,10 @@ public class UserRepositoryTest {
 
   @Before
   public void setup() {
-    user = new User()
-            .id(1)
-            .username("JohnDoe")
-            .password("Password");
+    user = new User();
+    user.setId(1);
+    user.setUsername("JohnDoe");
+    user.setPassword("Password");
   }
 
   @Test
@@ -35,18 +36,20 @@ public class UserRepositoryTest {
 
     Optional<User> usr = repository.findById(1L);
 
-    assertEquals(user, usr.get() );
+    assertEquals( user, usr.get() );
   }
 
   @Test
   public void userCanBeDeleted() {
     repository.delete(user);
+
     assertFalse( repository.findById(1L).isPresent() );
   }
 
   @Test
   public void userCanBeChanged() {
-    repository.save( user.username("JohnDoe") );
+    user.setUsername("JohnDoe");
+    repository.save( user );
 
     assertEquals( user, repository.findById(1L).get() );
   }
@@ -54,26 +57,45 @@ public class UserRepositoryTest {
   @Test
   public void userCanBeFoundByUsername() {
 
-    repository.save(new User()
-            .id(2)
-            .username("Smith")
-            .password("Password1"));
+    User userA = new User();
+    User userB = new User();
+    User userC = new User();
 
-    repository.save(new User()
-            .id(3)
-            .username("John")
-            .password("Password2"));
+    userA.setUsername("John");
+    userB.setUsername("Mark");
+    userC.setUsername("Jay");
 
-    repository.save(new User()
-            .id(4)
-            .username("Davies")
-            .password("Password3"));
+    userA.setPassword("Password1");
+    userB.setPassword("Password2");
+    userC.setPassword("Password3");
 
-    Optional<User> usr = repository.findByUsername("Smith");
+    repository.save(userA);
+    repository.save(userB);
+    repository.save(userC);
 
-    assertEquals( "Smith", usr.get().username() );
+    Optional<User> usr = repository.findByUsername("John");
+
+    assertEquals ("John", usr.get().getUsername() );
   }
 
+  @Test
+  public void userCanBeFoundById() {
+    repository.save(user);
 
+    Optional<User> usr = repository.findById(1L);
+    assertEquals(user, usr.get());
+
+  }
+
+  @Test
+  public void usersCanBeFoundByUsernames() {
+
+    // Inside Data there are two users called Robert, and Rob, this query should return both.
+
+    Optional<List<User>> users = repository.findByUsernameContains("Rob");
+    assertTrue( users.isPresent() && users.get().size() == 2 );
+
+
+  }
 
 }
