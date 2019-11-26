@@ -8,7 +8,6 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import java.time.LocalDateTime;
 
 /**
  * User is a representation of a user of the SkillsDB.
@@ -98,7 +97,12 @@ public class Course {
      *
      */
     @Column(name = "posted")
-    private LocalDateTime date;
+    private String date;
+
+//    public String prettyDate() {
+//        return date.format (DateTimeFormatter.ofPattern("yyyy-MM-dd") );
+//    }
+
 
     /**
      * User who created and is running course
@@ -112,6 +116,15 @@ public class Course {
     @JoinColumn(name = "user_creator")
     private User user;
 
+
+    /**
+     * The skill that the course is
+     *
+     *
+     * @param skill_id new Skill for the course.
+     * @return skill of the course.
+     *
+     */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "skill_id")
     private Skill skillId;

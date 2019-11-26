@@ -33,7 +33,7 @@ public class CourseController {
     }
 
     @PostMapping("/course/create")
-    public String submitAdvert(@ModelAttribute("course") @Valid Course course, BindingResult result, Model model) {
+    public String submitCourse(@ModelAttribute("course") @Valid Course course, BindingResult result, Model model) {
 
         if ( result.hasErrors() ) {
             model.addAttribute("skills", skillRepo.findAll());
@@ -51,7 +51,7 @@ public class CourseController {
     }
 
     @GetMapping("/courses/{id}")
-    public String advertPage(@PathVariable("id") Long id, Model model) {
+    public String coursePage(@PathVariable("id") Long id, Model model) {
 
         String skill;
         String type;
@@ -60,7 +60,7 @@ public class CourseController {
             if (!course.isPresent()) {
                 return "404";
             }
-            model.addAttribute("advert", course.get());
+            model.addAttribute("course", course.get());
 
 
         return "courses/course";
