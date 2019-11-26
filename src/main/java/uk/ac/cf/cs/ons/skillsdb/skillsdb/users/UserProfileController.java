@@ -37,6 +37,6 @@ public class UserProfileController {
         model.addAttribute("searchTermKey", searchTerm);
         model.addAttribute("usersKey", users);
 
-        return "user_list";
+        return "users/user_list";
     }
 }
