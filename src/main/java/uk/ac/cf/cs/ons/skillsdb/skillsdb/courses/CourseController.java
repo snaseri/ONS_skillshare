@@ -33,9 +33,10 @@ public class CourseController {
     }
 
     @PostMapping("/course/create")
-    public String submitAdvert(@ModelAttribute("course") @Valid Course course, BindingResult result) {
+    public String submitAdvert(@ModelAttribute("course") @Valid Course course, BindingResult result, Model model) {
 
         if ( result.hasErrors() ) {
+            model.addAttribute("skills", skillRepo.findAll());
             return "courses/create";
         }
 
