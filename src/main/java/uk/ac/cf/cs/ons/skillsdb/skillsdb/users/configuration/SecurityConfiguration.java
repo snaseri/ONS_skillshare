@@ -1,5 +1,6 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.users.configuration;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -13,18 +14,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+
+
     @Autowired
     private DataSource dataSource;
-
 
     @Value("${spring.queries.users-query}")
     private String usersQuery;
@@ -33,46 +33,41 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private String rolesQuery;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth)
-            throws Exception {
-        auth.
-                jdbcAuthentication()
-                .usersByUsernameQuery(usersQuery)
-                .authoritiesByUsernameQuery(rolesQuery)
-
-                .dataSource(dataSource)
-                .passwordEncoder(bCryptPasswordEncoder);
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication().usersByUsernameQuery(usersQuery).authoritiesByUsernameQuery(rolesQuery)
+                .dataSource(dataSource).passwordEncoder(bCryptPasswordEncoder);
     }
 
-
-
-
-    // Manage login security
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.
-                authorizeRequests()
+        http.authorizeRequests()
+                // URLs matching for access rights
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
-                .authenticated().and().csrf().disable().formLogin()
-                .loginPage("/login").failureUrl("/login?error=true")
+                .antMatchers("/home/**").hasAnyAuthority("SUPER_USER", "ADMIN_USER", "SITE_USER")
+                .anyRequest().authenticated()
+                .and()
+                // form login
+                .csrf().disable().formLogin()
+                .loginPage("/login")
+                .failureUrl("/login?error=true")
                 .defaultSuccessUrl("/home")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .and().logout()
+                .and()
+                // logout
+                .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and().exceptionHandling()
+                .logoutSuccessUrl("/").and()
+                .exceptionHandling()
                 .accessDeniedPage("/access-denied");
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+        web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
     }
 
 }
