@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+  <head>  <script src="jquery-3.4.1.min.js"></script> </head>
   <body>
     <form action="#" th:action="@{/course/create}" th:object="${course}" th:fragment="form" method="POST">
       <!-- Title-->
@@ -17,7 +18,7 @@
       </div>
       <!-- isFree -->
       <div class="form-group form-check">
-        <input aria-describedby="Please enter the amount you would like to donate"
+        <input id="freeBox" aria-describedby="Please enter the amount you would like to donate"
                class="form-check-input"
                th:field="*{isFree}"
                type="checkbox"/>
@@ -27,9 +28,9 @@
         </label>
       </div>
       <!-- Price -->
-      <div class="form-group">
+      <div class="form-group" id="priceSection">
         <label th:name="*{price}">Price</label>
-        <textarea class="form-control" type="text" th:field="*{price}">
+        <textarea id="priceInput" class="form-control" type="text" th:field="*{price}">
         </textarea>
         <div class="alert alert-danger" th:errors="*{price}" th:if="${#fields.hasErrors('description')}"></div>
       </div>
@@ -47,10 +48,23 @@
           <option value="0">Please select a Skill</option>
           <option th:each="skill: ${skills}" th:value="${skill.id}" th:text="${skill.name}"></option>
         </select>
+        <div class="alert alert-danger" th:errors="*{skillId}" th:if="${#fields.hasErrors('skillId')}"></div>
       </div>
       <button class="btn btn-primary" type="submit">Submit</button>
     </form>
   </body>
+
+ <script>
+    $('#freeBox').on("click", function(){
+      alert("Hello");
+      if( $('#priceSection').is(':hidden')) {
+        $('#priceSection').show();
+      }else{
+        $('#priceSection').hide();
+      }
+    });
+  </script>
+
 </html>
 
 

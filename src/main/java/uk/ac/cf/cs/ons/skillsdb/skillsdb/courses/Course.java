@@ -8,6 +8,7 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * User is a representation of a user of the SkillsDB.
@@ -83,7 +84,8 @@ public class Course {
      */
     @Column(name = "price")
     @Min(0)
-    @NumberFormat(style = NumberFormat.Style.DEFAULT)
+    @NumberFormat(style = NumberFormat.Style.CURRENCY)
+    @NotNull
     private Double price;
 
 
@@ -97,6 +99,7 @@ public class Course {
      *
      */
     @Column(name = "posted")
+    @NotNull(message = "Please Select a date")
     private String date;
 
 //    public String prettyDate() {
@@ -127,6 +130,7 @@ public class Course {
      */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "skill_id")
+    @NotNull(message = "Please Select a skill")
     private Skill skillId;
 
 }
