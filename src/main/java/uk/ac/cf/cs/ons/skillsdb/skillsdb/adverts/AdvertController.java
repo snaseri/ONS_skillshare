@@ -75,9 +75,11 @@ public class AdvertController {
      * @return view - the selected view to return
      */
     @PostMapping("/create")
-    public String submitAdvert(@ModelAttribute("advert") @Valid Advert advert, BindingResult result) {
+    public String submitAdvert(@ModelAttribute("advert") @Valid Advert advert, BindingResult result, Model model) {
 
         if ( result.hasErrors() ) {
+            model.addAttribute("skills", skillRepository.findAll());
+            model.addAttribute("types", typeRepository.findAll());
             return CREATE_PAGE;
         }
 

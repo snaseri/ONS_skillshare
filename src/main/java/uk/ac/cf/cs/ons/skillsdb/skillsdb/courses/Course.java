@@ -1,11 +1,13 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.courses;
 
-
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.NumberFormat;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.Skill;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 
-
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.time.LocalDateTime;
 
 /**
@@ -42,8 +44,8 @@ public class Course {
      * @return name of the course.
      */
     @Column(name = "name")
+    @Length(min = 5, max = 30, message = "Course name has to be 5-30 characters long")
     private String name;
-
 
 
     /**
@@ -54,7 +56,9 @@ public class Course {
      * @return description of the course.
      *
      */
+
     @Column(name = "description")
+    @Length(min = 5, max = 250, message = "Course name has to be 5-250 characters long")
     private String description;
 
 
@@ -79,6 +83,8 @@ public class Course {
      *
      */
     @Column(name = "price")
+    @Min(0)
+    @NumberFormat(style = NumberFormat.Style.DEFAULT)
     private Double price;
 
 
@@ -91,7 +97,7 @@ public class Course {
      * @return date of the course.
      *
      */
-    @Column(name = "date")
+    @Column(name = "posted")
     private LocalDateTime date;
 
     /**
@@ -106,5 +112,8 @@ public class Course {
     @JoinColumn(name = "user_creator")
     private User user;
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "skill_id")
+    private Skill skillId;
 
 }

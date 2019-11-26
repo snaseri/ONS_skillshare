@@ -1,18 +1,24 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
 
 /**
- * UserRepository defines a contract that UserRepositories must implement to be considered a UserRepository.
+ * UserRepositoryImpl is the implementation of {@See UserRepository} allowing access to the data layer for users.
  *
  * @author  Kyle Davies
  * @author  Humzah Hanif
- * @version 1.0
+ * @verison 1.0
  * @since   2019-11-26
  * @see     User
+ * @see     UserRepository
+ * @url     https://spring.io/guides/gs/accessing-data-jpa/
  */
-public interface UserRepository  {
+@Repository
+public interface UserRepositoryImpl extends UserRepository, CrudRepository<User, Long> {
 
     /**
      * Find a User by username.
@@ -20,6 +26,7 @@ public interface UserRepository  {
      * @param username, Users username.
      * @return Optional of user.
      */
+    @Override
     Optional<User> findByUsername(String username);
 
     /**
@@ -28,6 +35,7 @@ public interface UserRepository  {
      * @param username, Users usernames.
      * @return Optional of a list of potentially matching users.
      */
+    @Override
     Optional<List<User>> findByUsernameContains(String username);
 
     /**
@@ -36,6 +44,7 @@ public interface UserRepository  {
      * @param id, Users unique id.
      * @return Optional of user.
      */
+    @Override
     Optional<User> findById(Long id);
 
     /**
@@ -43,6 +52,7 @@ public interface UserRepository  {
      *
      * @param user, User to delete.
      */
+    @Override
     void delete(User user);
 
     /**
@@ -51,6 +61,7 @@ public interface UserRepository  {
      * @param user, User to save.
      * @return user.
      */
+    @Override
     <S extends User> S save(S user);
 
 }

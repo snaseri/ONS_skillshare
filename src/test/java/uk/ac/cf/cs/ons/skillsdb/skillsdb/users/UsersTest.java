@@ -1,11 +1,9 @@
-package uk.ac.cf.cs.ons.skillsdb.skillsdb.Users;
-
+package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-
 
 public class UsersTest {
 
@@ -13,26 +11,31 @@ public class UsersTest {
 
   @Before
   public void setup() {
-    user = new User()
-            .id(1)
-            .username("JohnDoe")
-            .password("Password");
-
+    user = new User();
+    user.setId(1);
+    user.setUsername("JohnDoe");
+    user.setPassword("Password");
   }
 
   @Test
   public void userCanChangeId() {
-    assertEquals( 2, user.id(2).id() );
+    int newId = 2;
+    user.setId(newId);
+    assertEquals( newId, user.getId() );
   }
 
   @Test
   public void userCanChangePassword() {
-    assertEquals("Password1", user.password("Password1").password() );
+    String newPassword = "Password1";
+    user.setPassword(newPassword);
+    assertEquals( newPassword, user.getPassword() );
   }
 
   @Test
   public void userCanChangeUsername() {
-    assertEquals("JonDoe", user.username("JonDoe").username() );
+    String newUsername = "JohnDoep";
+    user.setUsername(newUsername);
+    assertEquals( newUsername, user.getUsername() );
   }
 
 

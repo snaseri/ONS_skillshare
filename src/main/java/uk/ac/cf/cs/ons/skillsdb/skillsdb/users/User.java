@@ -1,5 +1,6 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,36 +18,36 @@ import javax.persistence.*;
 @Table(name = "Users")
 public class User {
 
-  /**
-   * Id of the user.
-   *
-   * @param id New id for the user.
-   * @return id of the user.
-   */
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
-  private long id;
+    /**
+     * Id of the user.
+     *
+     * @param id New id for the user.
+     * @return id of the user.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long id;
 
-  /**
-   * Username of the user.
-   *
-   * @param username New username for the user.
-   * @return username of the user.
-   */
-  @Column(name = "username")
-  private String username;
+    /**
+     * Username of the user.
+     *
+     * @param username New username for the user.
+     * @return username of the user.
+     */
+    @Column(name = "username")
+    private String username;
 
-  /**
-   * Password of the user.
-   *
-   * TODO: This probably shouldn't be a String.
-   *
-   * @param password New password for the user.
-   * @return password of the user.
-   *
-   */
-  @Column(name = "password")
-  private String password;
+    /**
+     * Password of the user.
+     *
+     * TODO: This probably shouldn't be a String.
+     *
+     * @param password New password for the user.
+     * @return password of the user.
+     *
+     */
+    @Column(name = "password")
+    private String password;
 
 }

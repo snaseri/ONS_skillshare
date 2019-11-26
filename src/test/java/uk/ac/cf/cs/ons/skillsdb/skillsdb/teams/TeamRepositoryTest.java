@@ -22,10 +22,10 @@ public class TeamRepositoryTest {
 
     @Before
     public void setup() {
-        team = new Team()
-                .id(1)
-                .teamName("TheTeam")
-                .teamDescription("TheBestTeam");
+        team = new Team();
+        team.setId(1);
+        team.setTeamName("TheTeam");
+        team.setTeamDescription("TheBestTeam");
     }
 
     @Test
@@ -42,10 +42,19 @@ public class TeamRepositoryTest {
 
     @Test
     public void foundTeam(){
-        repository.save(team.teamName("TeamOne"));
-        repository.save(team.teamName("TeamTwo"));
-        repository.save(team.teamName("TeamThree"));
 
-        assertEquals("TeamThree", repository.findByTeamName("TeamThree").get().teamName());
+        Team a = new Team();
+        Team b = new Team();
+        Team c = new Team();
+
+        a.setTeamName("Team A");
+        b.setTeamName("Team B");
+        c.setTeamName("Team C");
+
+        repository.save(a);
+        repository.save(b);
+        repository.save(c);
+
+        assertEquals( c.getTeamName(), repository.findByTeamName("Team C").get().getTeamName() );
     }
 }

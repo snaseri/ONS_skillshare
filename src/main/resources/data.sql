@@ -48,3 +48,5 @@ insert into Users (id, username, password) values (28, 'jfrangor', 'AIlDME1J5');
 insert into Users (id, username, password) values (27, 'msleetq', 's1edGdp');
 insert into Users (id, username, password) values (26, 'gkeatp', 'PWEUYqAJF');
 insert into Users (id, username, password) values (25, 'cnazairo', '9B4bUm');
+insert into Users (id, username, password) values (39, 'Robert', 'password');
+insert into Users (id, username, password) values (40, 'Rob', 'password');
