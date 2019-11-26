@@ -2,6 +2,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.courses;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.Skill;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
@@ -9,6 +10,7 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * User is a representation of a user of the SkillsDB.
@@ -84,7 +86,7 @@ public class Course {
      */
     @Column(name = "price")
     @Min(0)
-    @NumberFormat(style = NumberFormat.Style.CURRENCY)
+    @NumberFormat(pattern = "#,###,###,###.##")
     @NotNull
     private Double price;
 
@@ -99,8 +101,9 @@ public class Course {
      *
      */
     @Column(name = "posted")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "Please Select a date")
-    private String date;
+    private Date date;
 
 //    public String prettyDate() {
 //        return date.format (DateTimeFormatter.ofPattern("yyyy-MM-dd") );
