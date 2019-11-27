@@ -18,7 +18,7 @@
       </div>
       <!-- isFree -->
       <div class="form-group form-check">
-        <input id="freeBox" aria-describedby="Please enter the amount you would like to donate"
+        <input onclick="myFunction()" id="freeBox" aria-describedby="Please enter the amount you would like to donate"
                class="form-check-input"
                th:field="*{isFree}"
                type="checkbox"/>
@@ -54,16 +54,6 @@
     </form>
   </body>
 
- <script>
-    $('#freeBox').on("click", function(){
-      alert("Hello");
-      if( $('#priceSection').is(':hidden')) {
-        $('#priceSection').show();
-      }else{
-        $('#priceSection').hide();
-      }
-    });
-  </script>
 
 </html>
 

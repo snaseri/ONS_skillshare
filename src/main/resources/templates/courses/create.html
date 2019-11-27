@@ -31,6 +31,21 @@
         </div>
       </div>
     </div>
+
+    <script>
+      function myFunction() {
+        var x = document.getElementById("priceSection");
+        var y = document.getElementById("priceInput")
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+          y.value = "0"
+        }
+      }
+    </script>
+
   </body>
+
 
 </html>
