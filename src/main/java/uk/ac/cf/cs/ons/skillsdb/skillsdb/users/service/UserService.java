@@ -1,10 +1,17 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.users.service;
 
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.model.User;
+
+import java.util.List;
 
 public interface UserService {
 
-    public void saveUser(User user);
 
-    public boolean isUserAlreadyPresent(User user);
+
+    List<User> getUsers();
+
+    long saveUser(User user);
+
+    UserDetails loadUserByUsername(String username);
 }

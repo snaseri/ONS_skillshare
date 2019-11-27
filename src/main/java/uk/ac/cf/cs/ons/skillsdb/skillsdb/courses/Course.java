@@ -2,7 +2,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.courses;
 
 
 import lombok.Data;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.model.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

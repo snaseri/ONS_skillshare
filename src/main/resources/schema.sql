@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS Users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
     username VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
-    status VARCHAR(30)
 
 );
 
@@ -33,22 +32,6 @@ CREATE TABLE IF NOT EXISTS AssociatedTeams (
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (team_id) REFERENCES Teams(id)
 );
-
-CREATE TABLE user_role (
-                                user_id int(11) NOT NULL,
-                                role_id int(11) NOT NULL,
-                                PRIMARY KEY (user_id,role_id),
-                                CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES Users (id),
-                                CONSTRAINT FK_user_role FOREIGN KEY (role_id) REFERENCES role (id)
-) ;
-
-CREATE TABLE role (
-                           id int(11) NOT NULL AUTO_INCREMENT,
-                           role_name varchar(255) DEFAULT NULL,
-                           role_desc varchar(255) DEFAULT NULL,
-                           PRIMARY KEY (id)
-);
-
 
 
 

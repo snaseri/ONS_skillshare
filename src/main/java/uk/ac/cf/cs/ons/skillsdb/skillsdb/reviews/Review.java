@@ -3,6 +3,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.reviews;
 
 import lombok.Data;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.courses.Course;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.model.User;
 
 import javax.persistence.*;
 
@@ -79,7 +80,7 @@ public class Review {
      */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_creator")
-    private uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User user;
+    private User user;
 
 
 }

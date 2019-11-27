@@ -30,6 +30,8 @@ ext {
 dependencies {
 
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile( project( ':hibernate-core' ))
+	implementation 'org.hibernate:hibernate-core:5.4.9.Final'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	runtimeOnly 'mysql:mysql-connector-java'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
