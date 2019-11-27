@@ -52,10 +52,7 @@ public class CourseController {
 
     @GetMapping("/courses/{id}")
     public String coursePage(@PathVariable("id") Long id, Model model) {
-
-        String skill;
-        String type;
-
+        
             Optional<Course> course = courseRepo.findById(id);
             if (!course.isPresent()) {
                 return "404";

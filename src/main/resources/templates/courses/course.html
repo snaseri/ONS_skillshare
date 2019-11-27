@@ -24,10 +24,9 @@
         <p th:text="*{course.name}"></p>
         <small>Description</small>
         <p th:text="*{course.description}"></p>
-        <small>Free</small>
-        <p th:text="*{course.isFree}"></p>
         <small>Price</small>
-        <p th:text="*{course.price}"></p>
+        <div th:if="${course.price > 0}"><p th:text="${'£' + #numbers.formatDecimal(course.price, 0, 'COMMA', 2, 'POINT')}"></p></div>
+        <div th:if="${course.price == 0}"><p>Free</p></div>
         <small>Course Date</small>
         <p th:text="*{course.date}"></p>
     </div>
