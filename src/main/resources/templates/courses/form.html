@@ -30,7 +30,7 @@
       <!-- Price -->
       <div class="form-group" id="priceSection">
         <label th:name="*{price}">Price</label>
-        <textarea id="priceInput" class="form-control" type="text" th:field="*{price}">
+        <textarea id="priceInput" class="form-control" type="number" th:field="*{price}">
         </textarea>
         <div class="alert alert-danger" th:errors="*{price}" th:if="${#fields.hasErrors('description')}"></div>
       </div>

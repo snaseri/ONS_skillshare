@@ -60,7 +60,7 @@ public class Course {
      */
 
     @Column(name = "description")
-    @Length(min = 5, max = 250, message = "Course name has to be 5-250 characters long")
+    @Length(min = 5, max = 250, message = "Course description has to be 5-250 characters long")
     private String description;
 
 
