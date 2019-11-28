@@ -2,7 +2,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.enrolledoncourse;
 
 import lombok.Data;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.courses.Course;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.model.User;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 
 import javax.persistence.*;
 

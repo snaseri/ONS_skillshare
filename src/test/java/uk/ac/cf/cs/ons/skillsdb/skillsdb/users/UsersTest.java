@@ -3,7 +3,6 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.model.User;
 
 import static org.junit.Assert.assertEquals;
 

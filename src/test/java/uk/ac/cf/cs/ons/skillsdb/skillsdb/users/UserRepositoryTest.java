@@ -10,7 +10,6 @@ import static org.junit.Assert.assertFalse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.model.User;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.repositories.UserRepository;
 
 @RunWith(SpringRunner.class)

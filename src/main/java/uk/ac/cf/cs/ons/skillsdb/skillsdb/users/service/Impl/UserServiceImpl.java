@@ -7,21 +7,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.dao.UserDao;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.model.User;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.repository.UserRepository;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.service.UserService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 @Service
-@Repository
 @Transactional
 public class UserServiceImpl implements UserDetailsService, UserService {
 
@@ -32,18 +29,22 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @PersistenceContext
     private EntityManager entityManager;
 
+
+
     @Autowired
-    private UserDao userDao;
+    UserRepository userRepository;
 
-  /*  @Autowired
-    UserRepository userRepository;*/
 
+
+
+    @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findUserByUsername(username);
+        User user = userRepository.findByUsername(username);
         if(user == null){
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        return new org.springframework.security.core.userdetails.User(String.valueOf(user.getId()), user.getPassword(), getAuthority());
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority());
     }
 
 
@@ -66,22 +67,35 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
-    public List<User> getUsers() {
-        return userDao.getUserDetails();
-    }
+
 
 
     @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+
+
+
+    @Override
+    public void save(User user) {
+        user.setPassword(encoder.encode(user.getPassword()));
+        userRepository.save(user);
+    }
+
+
+  /*  @Override
     public long saveUser(User user) {
 
 
         user.setPassword(encoder.encode(user.getPassword()));
-       /* userRepository.save(user);*/
+        userRepository.save(user);
 
             entityManager.persist(user);
 
             return user.getId();
-    }
+    }*/
 
 
 

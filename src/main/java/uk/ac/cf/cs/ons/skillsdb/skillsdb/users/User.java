@@ -1,4 +1,4 @@
-package uk.ac.cf.cs.ons.skillsdb.skillsdb.users.model;
+package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
 
 

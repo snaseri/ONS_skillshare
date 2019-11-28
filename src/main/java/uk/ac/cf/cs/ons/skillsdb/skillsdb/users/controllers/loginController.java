@@ -2,21 +2,17 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.users.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.dao.UserDao;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.model.User;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.repository.UserRepository;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.service.UserService;
 
 import javax.validation.Valid;
@@ -27,14 +23,11 @@ public class loginController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    UserDao userdao;
 
-/*
+
 
     @Autowired
     UserRepository userRepository;
-*/
 
 
 
@@ -43,8 +36,8 @@ public class loginController {
     public String home(Model model, @AuthenticationPrincipal UserDetails currentUser) {
 
 
-        User user = userdao.findUserByUsername(currentUser.getUsername());
-        model.addAttribute("currentuser", user);
+        UserDetails user = currentUser;
+        model.addAttribute("user", user);
         return "home";
     }
 
@@ -93,7 +86,7 @@ public class loginController {
         }
 
         else {
-            userService.saveUser(user);
+            userService.save(user);
             modelAndView.addObject("successMessage", "User is registered successfully!");
         }
         modelAndView.addObject("user", new User());
