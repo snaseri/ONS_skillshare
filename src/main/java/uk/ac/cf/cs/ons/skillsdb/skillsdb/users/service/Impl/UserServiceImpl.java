@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.dao.UserDao;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.model.User;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.repository.UserRepository;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.service.UserService;
 
 import javax.persistence.EntityManager;
@@ -36,8 +35,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    UserRepository userRepository;
+  /*  @Autowired
+    UserRepository userRepository;*/
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.findUserByUsername(username);
@@ -48,7 +47,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
 
-   /* @Override
+/*
+    @Override
     public UserDetails getUsername(String username) {
 
         User user = userDao.findUserByUsername(username);
@@ -57,7 +57,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
 
         return userRepository.findByUsername(username);
-    }*/
+    }
+*/
 
 
 

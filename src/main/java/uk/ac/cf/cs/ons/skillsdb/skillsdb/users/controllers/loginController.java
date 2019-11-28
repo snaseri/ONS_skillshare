@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.dao.UserDao;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.model.User;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.repository.UserRepository;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.service.UserService;
 
 import javax.validation.Valid;
@@ -31,9 +30,11 @@ public class loginController {
     @Autowired
     UserDao userdao;
 
+/*
 
     @Autowired
     UserRepository userRepository;
+*/
 
 
 
@@ -42,9 +43,8 @@ public class loginController {
     public String home(Model model, @AuthenticationPrincipal UserDetails currentUser) {
 
 
-        User user = (User) userRepository.findByUsername(currentUser.getUsername());
+        User user = userdao.findUserByUsername(currentUser.getUsername());
         model.addAttribute("currentuser", user);
-
         return "home";
     }
 
