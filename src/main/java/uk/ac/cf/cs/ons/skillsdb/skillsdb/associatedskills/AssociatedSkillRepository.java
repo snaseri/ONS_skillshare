@@ -28,4 +28,6 @@ public interface AssociatedSkillRepository extends CrudRepository<AssociatedSkil
      * @return List of Users that have the searched skill.
      */
     List<AssociatedSkill> findBySkill(String skill);
+
+    List<AssociatedSkill> findABySkillName(String searchTerm);
 }
