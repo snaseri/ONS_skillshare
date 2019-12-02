@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.enrolledoncourse.EnrolledOnCourse;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.enrolledoncourse.EnrolledRepository;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.SkillRepository;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 
@@ -18,10 +20,12 @@ public class CourseController {
 
     private CourseRepository courseRepo;
     private SkillRepository skillRepo;
+    private EnrolledRepository enrollRepo;
 
-    public CourseController(CourseRepository aRepo, SkillRepository sRepo) {
+    public CourseController(CourseRepository aRepo, SkillRepository sRepo, EnrolledRepository eRepo) {
         courseRepo = aRepo;
         skillRepo = sRepo;
+        enrollRepo = eRepo;
     }
 
 
@@ -58,6 +62,29 @@ public class CourseController {
                 return "404";
             }
             model.addAttribute("course", course.get());
+
+
+        return "courses/course";
+    }
+
+    @PostMapping("/courses/{id}")
+    public String courseEnroll(@PathVariable("id") Long id, Model model) {
+
+        Optional<Course> course = courseRepo.findById(id);
+        if (!course.isPresent()) {
+            return "404";
+        }
+
+        //TODO set the user as the logged in user
+        User defaultUser = new User();
+        defaultUser.setPassword("password");
+        defaultUser.setUsername("username");
+        EnrolledOnCourse enroll = new EnrolledOnCourse();
+        enroll.setCourse(course.get());
+        enroll.setUser(defaultUser);
+
+        enrollRepo.save(enroll);
+        model.addAttribute("course", course.get());
 
 
         return "courses/course";
