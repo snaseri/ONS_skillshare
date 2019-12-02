@@ -73,11 +73,13 @@ public class CourseController {
     @PostMapping("/courses/{id}")
     public String courseEnroll(@PathVariable("id") Long id, Model model) {
 
+
         Optional<Course> course = courseRepo.findById(id);
         if (!course.isPresent()) {
             return "404";
         }
 
+        int enrolledUsers = enrollRepo.countAllByCourseIdIs(course.get().getId());
         //TODO set the user as the logged in user
         User defaultUser = new User();
         defaultUser.setPassword("password");
@@ -92,6 +94,7 @@ public class CourseController {
 
         model.addAttribute("course", course.get());
         model.addAttribute("enroll", enroll);
+        model.addAttribute("enrolled", enrolledUsers);
 
         return "index";
     }
