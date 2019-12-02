@@ -90,6 +90,7 @@ public class CourseController {
         enroll.setCourse(course.get());
         enroll.setUser(defaultUser);
 
+        //TODO add validations so a user can't enroll on the same course twice
         enrollRepo.save(enroll);
 
         model.addAttribute("course", course.get());
