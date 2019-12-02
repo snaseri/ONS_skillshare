@@ -61,7 +61,10 @@ public class CourseController {
             if (!course.isPresent()) {
                 return "404";
             }
+
+            int enrolledUsers = enrollRepo.countByIdIs(course.get().getId());
             model.addAttribute("course", course.get());
+            model.addAttribute("enrolled", enrolledUsers);
 
 
         return "courses/course";
@@ -79,15 +82,18 @@ public class CourseController {
         User defaultUser = new User();
         defaultUser.setPassword("password");
         defaultUser.setUsername("username");
+
         EnrolledOnCourse enroll = new EnrolledOnCourse();
+
         enroll.setCourse(course.get());
         enroll.setUser(defaultUser);
 
         enrollRepo.save(enroll);
+
         model.addAttribute("course", course.get());
+        model.addAttribute("enroll", enroll);
 
-
-        return "courses/course";
+        return "index";
     }
 
 

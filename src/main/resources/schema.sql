@@ -120,3 +120,14 @@ CREATE TABLE IF NOT EXISTS Comments (
     FOREIGN KEY (advert_id) REFERENCES Adverts(id),
     FOREIGN KEY (user_creator) REFERENCES Users(id)
 );
+
+--  <<User>> can enroll a <<Course>>.
+
+CREATE TABLE IF NOT EXISTS Enrolled_On_Course (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_creator INT NOT NULL,
+	course_id INT NOT NULL,
+    FOREIGN KEY (course_id) REFERENCES Courses(id),
+    FOREIGN KEY (user_creator) REFERENCES Users(id)
+);
+
