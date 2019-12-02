@@ -41,12 +41,12 @@ public class AssociatedSkillController {
             model.addAttribute("searchTermKey", searchTerm);
             List userList = new ArrayList<User>();
             for (AssociatedSkill i : asList){
-                userList.add(i.getUser().getUsername());
+                userList.add(i.getUser());
             }
 
             model.addAttribute("asListKey", asList);
             model.addAttribute("userListKey", userList);
-            return "0";
+            return "as/as_list";
         } else {
             return "404";
         }

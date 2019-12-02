@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS Skills (
 /*
 A <<AssociatedSkill(s)>> is a linking table that links <<User(s)>> to a <<Skill(s)>>
  */
-CREATE TABLE IF NOT EXISTS AssociatedSkills (
+CREATE TABLE IF NOT EXISTS Associated_Skills (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     skill_id INT NOT NULL,

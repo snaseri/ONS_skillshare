@@ -18,7 +18,7 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@Table(name = "AssociatedSkills")
+@Table(name = "Associated_Skills")
 public class AssociatedSkill {
 
 

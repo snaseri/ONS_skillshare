@@ -50,3 +50,14 @@ insert into Users (id, username, password) values (26, 'gkeatp', 'PWEUYqAJF');
 insert into Users (id, username, password) values (25, 'cnazairo', '9B4bUm');
 insert into Users (id, username, password) values (39, 'Robert', 'password');
 insert into Users (id, username, password) values (40, 'Rob', 'password');
+
+insert into Associated_Skills (id, user_id, skill_id, rating) values (1, 2, 2, 1);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (2, 2, 1, 3);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (3, 1, 3, 1);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (4, 8, 1, 4);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (5, 5, 2, 3);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (6, 3, 2, 1);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (7, 3, 1, 4);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (8, 8, 3, 4);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (9, 1, 2, 5);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (10, 3, 2, 3);
