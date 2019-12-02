@@ -25,7 +25,7 @@ public interface EnrolledRepository {
      */
     Optional<EnrolledOnCourse> findById(Long id);
 
-    Optional<EnrolledOnCourse> save(EnrolledOnCourse enrolledOnCourse);
+    EnrolledOnCourse save(EnrolledOnCourse enrolledOnCourse);
 
 }
 
