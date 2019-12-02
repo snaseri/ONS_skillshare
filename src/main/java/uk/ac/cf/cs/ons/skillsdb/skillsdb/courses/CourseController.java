@@ -62,7 +62,7 @@ public class CourseController {
                 return "404";
             }
 
-            int enrolledUsers = enrollRepo.countByIdIs(course.get().getId());
+            int enrolledUsers = enrollRepo.countAllByCourseIdIs(course.get().getId());
             model.addAttribute("course", course.get());
             model.addAttribute("enrolled", enrolledUsers);
 

@@ -27,7 +27,7 @@ public interface EnrolledRepository {
 
     EnrolledOnCourse save(EnrolledOnCourse enrolledOnCourse);
 
-    int countByIdIs(Long id);
+    int countAllByCourseIdIs(Long id);
 
 }
 

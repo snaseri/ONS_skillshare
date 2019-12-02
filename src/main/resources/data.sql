@@ -51,7 +51,7 @@ insert into Users (id, username, password) values (25, 'cnazairo', '9B4bUm');
 insert into Users (id, username, password) values (39, 'Robert', 'password');
 insert into Users (id, username, password) values (40, 'Rob', 'password');
 
-insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (1, 'Java', 'Mauvvvvvvvvvvvvv', false, 2.89, '2008-11-11 13:23:44', 1, 2);
+insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (1, 'Java', 'Basics of object oriented programming', false, 3.00, '2008-11-11 13:23:44', 1, 2);
 insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (2, 'Python', 'a very coooooool course', true, 0, '2010-11-11 13:23:44', 1, 3);
 insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (3, 'The Course', 'for fun and a good time', true, 0, '2019-11-11 13:23:44', 1, 1);
 insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (4, 'Free flask', 'a very practical course', true, 0, '2019-11-11 13:23:44', 1, 1);
