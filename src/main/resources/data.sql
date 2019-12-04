@@ -8,6 +8,6 @@ INSERT INTO Types(id, name) VALUES (3, 'ADVICE');
 
 
 
-INSERT INTO Users(id, username, password) VALUES (3, "test", "test");
+
 
 

@@ -18,19 +18,19 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/*.js/**").addResourceLocations("/ui/static/");
         registry.addResourceHandler("/*.css/**").addResourceLocations("/ui/static/");
     }
-    
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("login");
         registry.addViewController("/login").setViewName("login");
     }
-    
+
     @Bean
-    public InternalResourceViewResolver setupViewResolver()  {
-        InternalResourceViewResolver resolver =  new InternalResourceViewResolver();
-        resolver.setPrefix ("/ui/jsp/");
-        resolver.setSuffix (".jsp");
-        resolver.setViewClass (JstlView.class);
+    public InternalResourceViewResolver setupViewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/ui/jsp/");
+        resolver.setSuffix(".jsp");
+        resolver.setViewClass(JstlView.class);
         return resolver;
     }
 
@@ -43,8 +43,4 @@ public class WebConfig extends WebMvcConfigurerAdapter {
             return bCryptPasswordEncoder;
         }
     }
-
-
-
-
 }
