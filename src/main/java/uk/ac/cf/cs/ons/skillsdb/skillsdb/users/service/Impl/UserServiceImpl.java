@@ -48,18 +48,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
 
-/*
-    @Override
-    public UserDetails getUsername(String username) {
-
-        User user = userDao.findUserByUsername(username);
-
-        String currentusername = user.getUsername();
-
-
-        return userRepository.findByUsername(username);
-    }
-*/
 
 
 
@@ -83,19 +71,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         user.setPassword(encoder.encode(user.getPassword()));
         userRepository.save(user);
     }
-
-
-  /*  @Override
-    public long saveUser(User user) {
-
-
-        user.setPassword(encoder.encode(user.getPassword()));
-        userRepository.save(user);
-
-            entityManager.persist(user);
-
-            return user.getId();
-    }*/
 
 
 
