@@ -13,6 +13,8 @@ import javax.persistence.*;
  * @see     Advert
  */
 @Data
+@Entity
+@Table(name = "Types")
 public class Type {
 
   /**
@@ -31,7 +33,7 @@ public class Type {
    * @param name New name of type of Type.
    * @return name of Type.
    */
-  @Enumerated(EnumType.ORDINAL)
+  @Enumerated(EnumType.STRING)
   private AdvertType name;
 
 

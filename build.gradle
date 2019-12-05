@@ -48,15 +48,16 @@ dependencies {
 	}
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 	testImplementation 'org.springframework.security:spring-security-test'
+	runtimeOnly 'com.h2database:h2'
 	testCompile 'junit:junit:4.12'
 }
 
-/*bootRun {
+bootRun {
 	systemProperty 'spring.profiles.active', 'demo'
 	main = 'uk.ac.cf.cs.ons.skillsdb.skillsdb.SkillsdbApplication'
 
 
-}*/
+}
 
 
 

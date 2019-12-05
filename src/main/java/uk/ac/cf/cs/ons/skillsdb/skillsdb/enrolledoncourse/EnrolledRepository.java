@@ -5,7 +5,7 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.reviews.Review;
 import java.util.Optional;
 
 /**
- * UserRepository allows the caller to access to the Users data source.
+ * EnrolledRepository allows the caller to access to the EnrolledOnCourse data source.
  *
  * @author  Sepehr Naseri
  * @version 1.0
@@ -24,6 +24,10 @@ public interface EnrolledRepository {
      * @return Optional Of the selected review.
      */
     Optional<EnrolledOnCourse> findById(Long id);
+
+    EnrolledOnCourse save(EnrolledOnCourse enrolledOnCourse);
+
+    int countAllByCourseIdIs(Long id);
 
 }
 

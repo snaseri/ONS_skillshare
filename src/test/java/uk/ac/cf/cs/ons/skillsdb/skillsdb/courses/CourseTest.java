@@ -6,37 +6,45 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 
 import java.time.LocalDateTime;
 
+import static org.junit.Assert.assertEquals;
 
-class CourseTest {
+public class CourseTest {
 
     private Course course;
 
     @Before
     public void setup() {
-        course = new Course()
-                .id(1)
-                .name("Python")
-                .description("teaching lots of python")
-                .isFree(false)
-                .price(50.00)
-                .date(LocalDateTime.now())
-                .user(new User());
+        course = new Course();
+        course.setId(1);
+        course.setName("Python");
+        course.setDescription("teaching lots of python");
+        course.setIsFree(false);
+        course.setPrice(50.00);
+        course.setDate(LocalDateTime.now());
+        course.setUser(new User());
 
     }
 
     @Test
-    public void userCanChangeName() {
-        assertEquals("Josh", course.name("Josh").name());
+    public void courseCanChangeName() {
+        String newName = "Python: 1";
+        course.setName(newName);
+        assertEquals( newName, course.getName() );
     }
 
     @Test
-    public void userCanChangeDescripton() {
-        assertEquals("Josh", course.description("Josh").description());
+    public void courseCanChangeDescripton() {
+        String newDescription = "Python for Starters";
+        course.setDescription(newDescription);
+        assertEquals( newDescription, course.getDescription() );
+
     }
 
     @Test
-    public void userCanChangePrice() {
-        assertEquals(50.50, course.price(50.50));
+    public void courseCanChangePrice() {
+        double newPrice = 50.50;
+        course.setPrice(newPrice);
+        assertEquals( newPrice, course.getPrice(), 0 );
     }
 
 }

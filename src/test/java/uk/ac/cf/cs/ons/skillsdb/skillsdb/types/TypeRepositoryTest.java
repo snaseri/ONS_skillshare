@@ -21,9 +21,9 @@ public class TypeRepositoryTest {
 
   @Before
   public void setup() {
-    type = new Type()
-            .id(1)
-            .name(AdvertType.ACCELERATION);
+    type = new Type();
+    type.setId(1);
+    type.setName(AdvertType.ACCELERATION);
   }
 
   @Test

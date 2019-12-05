@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.repository.UserRepository;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.service.UserService;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.UserService;
 
 import javax.validation.Valid;
 
@@ -32,13 +32,13 @@ public class loginController {
 
 
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String home(Model model, @AuthenticationPrincipal UserDetails currentUser) {
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index(Model model, @AuthenticationPrincipal UserDetails currentUser) {
 
 
         UserDetails user = currentUser;
         model.addAttribute("user", user);
-        return "home";
+        return "index";
     }
 
 
@@ -51,7 +51,9 @@ public class loginController {
 
 
 
-    @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
+
+
+    @RequestMapping(value = { "/login", "/" }, method = RequestMethod.GET)
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");

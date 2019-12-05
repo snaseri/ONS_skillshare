@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "EnrolledOnCourse")
+@Table(name = "Enrolled_On_Course")
 public class EnrolledOnCourse {
 
     /**

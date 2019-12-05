@@ -1,5 +1,4 @@
-package uk.ac.cf.cs.ons.skillsdb.skillsdb.users.service.Impl;
-
+package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,33 +7,69 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.repository.UserRepository;
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.service.UserService;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+/**
+ * UserServiceImpl is an implementation of {@see UserService} allowing controlled access to the UserRepository.
+ *
+ * @author  Humzah Hanif
+ * @version 1.0
+ * @since   2019-11-26
+ * @see     User
+ * @see     UserService
+ */
 @Service
 @Transactional
-public class UserServiceImpl implements UserDetailsService, UserService {
+
+public class UserServiceImpl implements UserDetailsService,UserService {
 
 
+
+
+    @Autowired
+    UserRepository userRepository;
     @Autowired
     BCryptPasswordEncoder encoder;
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * Allows for an implementation of UserService to be created with an implementation of UserRepository.
+     * 
+     * @param repository, implementation of UserRepository.
+     */
+    public UserServiceImpl(UserRepository repository) {
+        userRepository = repository;
+    }
 
+    /**
+     * Find a User by their unique id.
+     *
+     * @param id, Users id
+     * @return Optional of user
+     */
+    @Override
+    public Optional<User> findUserByIndex(long id) {
+        return userRepository.findById(id);
+    }
 
-    @Autowired
-    UserRepository userRepository;
-
-
+    /**
+     * Find a User(s) by similar username(s).
+     *
+     * @param searchTerm, Users usernames.
+     * @return Optional of a list of potentially matching users.
+     */
+    @Override
+    public Optional<List<User>> findUserBySearch(String searchTerm){
+        return userRepository.findByUsernameContains(searchTerm);
+    }
 
 
     @Override
@@ -48,21 +83,15 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
 
-
-
-
     private List<SimpleGrantedAuthority> getAuthority() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
-
-
 
 
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
-
 
 
 
@@ -73,13 +102,4 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
 
-
-
 }
-
-
-
-
-
-
-

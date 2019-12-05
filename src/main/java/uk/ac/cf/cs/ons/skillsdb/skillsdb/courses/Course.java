@@ -1,11 +1,16 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.courses;
 
-
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.Skill;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * User is a representation of a user of the SkillsDB.
@@ -41,8 +46,8 @@ public class Course {
      * @return name of the course.
      */
     @Column(name = "name")
+    @Length(min = 5, max = 30, message = "Course name has to be 5-30 characters long")
     private String name;
-
 
 
     /**
@@ -53,7 +58,9 @@ public class Course {
      * @return description of the course.
      *
      */
+
     @Column(name = "description")
+    @Length(min = 5, max = 250, message = "Course description has to be 5-250 characters long")
     private String description;
 
 
@@ -78,6 +85,9 @@ public class Course {
      *
      */
     @Column(name = "price")
+    @Min(0)
+    @NumberFormat(pattern = "#,###,###,###.##")
+    @NotNull
     private Double price;
 
 
@@ -90,8 +100,15 @@ public class Course {
      * @return date of the course.
      *
      */
-    @Column(name = "date")
-    private LocalDateTime date;
+    @Column(name = "posted")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "Please Select a date")
+    private Date date;
+
+//    public String prettyDate() {
+//        return date.format (DateTimeFormatter.ofPattern("yyyy-MM-dd") );
+//    }
+
 
     /**
      * User who created and is running course
@@ -105,5 +122,18 @@ public class Course {
     @JoinColumn(name = "user_creator")
     private User user;
 
+
+    /**
+     * The skill that the course is
+     *
+     *
+     * @param skill_id new Skill for the course.
+     * @return skill of the course.
+     *
+     */
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "skill_id")
+    @NotNull(message = "Please Select a skill")
+    private Skill skillId;
 
 }
