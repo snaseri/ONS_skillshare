@@ -31,7 +31,14 @@
         <p th:text="*{course.date}"></p>
         <small>Course Skill</small>
         <p th:text="*{course.skillId.getName()}"></p>
+        <small>Number of users enrolled</small>
+        <p th:text="*{enrolled}"></p>
+        <form  th:object="${course}" method="post">
+        <button class="btn btn-primary" type="submit" formmethod="post">Enroll</button>
+        </form>
     </div>
+
+
 
   </body>
 </html>

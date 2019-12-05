@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EnrolledRepoJPA extends EnrolledRepository, JpaRepository<EnrolledOnCourse, Long> {
+
 }
