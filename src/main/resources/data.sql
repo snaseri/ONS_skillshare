@@ -44,7 +44,6 @@ insert into Users (id, username, password) values (32, 'cbocv', 'rOKZI7P');
 insert into Users (id, username, password) values (31, 'bmcmeekinu', 'UMvxGhMpH');
 insert into Users (id, username, password) values (30, 'ptomant', 'fqc6ha6JITXX');
 insert into Users (id, username, password) values (29, 'apovalls', 'HzjmYwHTie');
-insert into Users (id, username, password) values (28, 'jfrangor', 'AIlDME1J5');
 insert into Users (id, username, password) values (27, 'msleetq', 's1edGdp');
 insert into Users (id, username, password) values (26, 'gkeatp', 'PWEUYqAJF');
 insert into Users (id, username, password) values (25, 'cnazairo', '9B4bUm');
