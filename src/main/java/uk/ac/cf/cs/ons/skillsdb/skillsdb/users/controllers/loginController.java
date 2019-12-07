@@ -17,6 +17,9 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.UserService;
 
 import javax.validation.Valid;
 
+/**
+ *
+ */
 @Controller
 public class loginController {
 
@@ -42,17 +45,10 @@ public class loginController {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Controller for loading login page
+     * @return
+     */
     @RequestMapping(value = { "/login", "/" }, method = RequestMethod.GET)
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
@@ -61,8 +57,10 @@ public class loginController {
     }
 
 
-
-
+    /**
+     * Controller for loading register page
+     * @return
+     */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();
@@ -73,27 +71,43 @@ public class loginController {
     }
 
 
-
-
-    // POST METHODS
-
+    /**
+     * Controller for registering user
+     * @param user
+     * @param bindingResult
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value="/register", method=RequestMethod.POST)
     public ModelAndView registerUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap) {
         ModelAndView modelAndView = new ModelAndView();
         // Check for the validations
-        if(bindingResult.hasErrors()) {
-            modelAndView.addObject("successMessage", "Please correct the errors in form!");
-            modelMap.addAttribute("bindingResult", bindingResult);
-
+        if(userExists(user.getUsername())) {
+            modelAndView.addObject("errorMessage", "Username taken, please choose another.");
         }
 
         else {
             userService.save(user);
             modelAndView.addObject("successMessage", "User is registered successfully!");
+            modelAndView.addObject("user", new User());
+            modelAndView.setViewName("login");
         }
-        modelAndView.addObject("user", new User());
-        modelAndView.setViewName("login");
+
         return modelAndView;
+    }
+
+
+    /**
+     * Checks whether username is already taken.
+     * @param username
+     * @return
+     */
+    private boolean userExists(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            return true;
+        }
+        return false;
     }
 
 

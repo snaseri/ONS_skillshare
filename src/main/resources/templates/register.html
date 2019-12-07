@@ -47,13 +47,12 @@
 
             <span th:utext="${successMessage}"></span>
 
-            <div class="alert alert-success" role="alert"
-                 th:if="${(bindingResult != null && bindingResult.getAllErrors() != null)}">
+
+            <div th:if="${errorMessage != null}" class="alert alert alert-danger" role="alert">
+                <span th:utext="${errorMessage}"></span>
                 <button type="button" class="close" data-dismiss="alert"
                         aria-hidden="true">×</button>
-                <ul th:each="data : ${bindingResult.getAllErrors()}">
-                    <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
-                </ul>
+            </div>
         </form>
     </div>
 </div>

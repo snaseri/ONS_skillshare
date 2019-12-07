@@ -20,11 +20,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private UserDetailsService userDetailsService;
 
+
+    /**
+     * Configuration for what URLs can be accessed
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
         http.csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login")).and().authorizeRequests()
-                .antMatchers("/home").hasRole("USER").and().formLogin().defaultSuccessUrl("/index")
+                .antMatchers("/index").hasRole("USER").and().formLogin().defaultSuccessUrl("/index")
                 .loginPage("/login").and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
     }
 
