@@ -43,7 +43,7 @@ public class SkillTaxonomy {
      * @return parent of the skill.
      *
      */
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_id")
     private Skill parent;
 
@@ -55,7 +55,7 @@ public class SkillTaxonomy {
      * @return child of the skill.
      *
      */
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "child_id")
     private Skill child;
 }
