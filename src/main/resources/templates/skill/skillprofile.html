@@ -24,9 +24,19 @@
                 <div>
                     <p th:text="${skillKey.description}"></p>
                 </div>
+                <p th:if="${not #lists.isEmpty(childKey)}"><b>Children of the skill:</b></p>
+                <div>
+                    <ul>
+                        <li th:each="taxonomy: ${childKey}"><a th:href="@{/skill/{id} (id=${taxonomy.child.getName()})}"
+                                                               th:text="${taxonomy.child.getName()}" ></a></li>
+                    </ul>
+
+                </div>
             </div>
         </div>
     </div>
+
+
 
 </main>
 

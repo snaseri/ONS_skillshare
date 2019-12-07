@@ -1,7 +1,6 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.skilltaxonomy;
 
-import uk.ac.cf.cs.ons.skillsdb.skillsdb.courses.Course;
-
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -25,8 +24,9 @@ public interface TaxonomyRepository {
      */
     Optional<SkillTaxonomy> findById(Long id);
 
+    List<SkillTaxonomy> findAllByChild_Name(String name);
 
-    public SkillTaxonomy save(Course aCourse);
+    List<SkillTaxonomy> findAllByParentName (String name);
 
 
 }
