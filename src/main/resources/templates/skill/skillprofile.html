@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Charity Profile</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" rel="stylesheet">
+    <link href="css/starter-template.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div id=missingCharityMessage th:if="${skillKey ==  null }">
+    <div>No matching skill</div>
+</div>
+
+<main class="container mt-4" role="main">
+    <div class="starter-template">
+        <div id=skillInfo th:if="${skillKey}">
+            <div class="col-md">
+                <b><h1 class="text-primary" th:text="${skillKey.name}"></h1></b>
+                <br>
+                <p><b>Description:</b></p>
+                <div>
+                    <p th:text="${skillKey.description}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+</body>
+</html>
