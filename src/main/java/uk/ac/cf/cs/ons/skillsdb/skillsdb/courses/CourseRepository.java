@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * CourseRepository allows the caller to access to the courses data source.
+ * TaxonomyRepository allows the caller to access to the courses data source.
  *
  * @author  Sepehr Naseri
  * @version 1.0
@@ -17,7 +17,7 @@ import java.util.Optional;
 public interface CourseRepository {
 
     /**
-     * Find a Comment by id.
+     * Find a Course by id.
      *
      * @param id Of the course you want to find.
      * @return Optional Of the selected course.
@@ -26,7 +26,7 @@ public interface CourseRepository {
 
 
     /**
-     * Find a Comment by name.
+     * Find a Course by name.
      *
      * @param name Of the course you want to find.
      * @return List Of the selected courses.
@@ -34,7 +34,7 @@ public interface CourseRepository {
     List<Course> findByName(String name);
 
     /**
-     * Find a Comment by price.
+     * Find a Course by price.
      *
      * @param price Of the course you want to find.
      * @return List Of the courses with selected price.
