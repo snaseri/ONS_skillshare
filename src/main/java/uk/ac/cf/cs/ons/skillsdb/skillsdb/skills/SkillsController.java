@@ -38,10 +38,12 @@ public class SkillsController {
 
         Optional<Skill> skill = skillRepo.findSkillByName(name);
         List<SkillTaxonomy> children = taxoRepo.findAllByParentName(name);
+        List<SkillTaxonomy> parent = taxoRepo.findAllByChildName(name);
 
         if (skill.isPresent()) {
             model.addAttribute("skillKey", skill.get());
             model.addAttribute("childKey", children);
+            model.addAttribute("parentKey", parent);
 
             return "skill/skillprofile";
         } else {

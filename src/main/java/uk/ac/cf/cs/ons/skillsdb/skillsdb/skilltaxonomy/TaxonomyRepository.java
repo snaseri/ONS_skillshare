@@ -28,6 +28,8 @@ public interface TaxonomyRepository {
 
     List<SkillTaxonomy> findAllByParentName (String name);
 
+    List<SkillTaxonomy> findAllByChildName (String name);
+
 
 }
 
