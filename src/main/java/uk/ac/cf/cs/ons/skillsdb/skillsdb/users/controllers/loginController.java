@@ -2,7 +2,10 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.users.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,16 +49,24 @@ public class loginController {
 
 
     /**
-     * Controller for loading login page
+     * Controller for loading login page.
+     * If user is already logged in, open index model. If user is not logged in, open login model.
      * @return
      */
     @RequestMapping(value = { "/login", "/" }, method = RequestMethod.GET)
     public ModelAndView login() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
-        return modelAndView;
-    }
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+
+            return new ModelAndView("forward:/index");
+        } else {
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("login");
+            return modelAndView;
+        }
+    }
 
     /**
      * Controller for loading register page
