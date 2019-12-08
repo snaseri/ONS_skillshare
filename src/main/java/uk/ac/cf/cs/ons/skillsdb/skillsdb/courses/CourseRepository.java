@@ -41,6 +41,7 @@ public interface CourseRepository {
      */
     List<Course> findByPrice(Double price);
 
+    List<Course> findAllBySkillIdName(String name);
 
 
     public Course save(Course aCourse);
