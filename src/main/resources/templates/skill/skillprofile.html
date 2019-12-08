@@ -7,7 +7,7 @@
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" rel="stylesheet">
     <link href="css/starter-template.css" rel="stylesheet">
     <style>
-        #courseDropdown, #userDropdown {display: none;}
+        #courseDropdown, #userDropdown, #advertDropdown {display: none;}
     </style>
 </head>
 <body>
@@ -49,7 +49,7 @@
     <button onclick="courseToggle()" class="btn btn-outline-info">Avaliable Courses</button>
     <div id="courseDropdown" class="dropdown-content">
         <div th:if="${#lists.isEmpty(courseKey)}">
-            <div>There are currently now available courses for this skill</div>
+            <div>There are currently no available courses for this skill</div>
         </div>
         <div th:if="${not #lists.isEmpty(courseKey)}">
     <table class="table">
@@ -106,6 +106,36 @@
         </div>
     </div>
 
+    <div class="dropdown">
+        <button onclick="advertToggle()" class="btn btn-outline-info">Adverts for Skill</button>
+        <div id="advertDropdown" class="dropdown-content">
+            <div th:if="${#lists.isEmpty(advertKey)}">
+                <div>There are currently no available adverts for this skill</div>
+            </div>
+            <div th:if="${not #lists.isEmpty(advertKey)}">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Advert Name</th>
+                        <th scope="col">Description </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="currAdvert : ${advertKey}">
+                        <th scope="row">
+                            <a th:href="@{/advert/{id} (id=${currAdvert.id})}"
+                               th:id="'advertLink'+ ${currAdvert.id}">
+                                <span th:text="${currAdvert.title}"></span>
+                            </a>
+                        </th>
+                        <td th:text="${currAdvert.description}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 
 </main>
 
@@ -121,6 +151,15 @@
 
     function courseToggle() {
         var x = document.getElementById("courseDropdown");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function advertToggle() {
+        var x = document.getElementById("advertDropdown");
         if (x.style.display === "none") {
             x.style.display = "block";
         } else {

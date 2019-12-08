@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.Advert;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.AdvertService;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.associatedskills.AssociatedSkill;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.associatedskills.AssociatedSkillService;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.courses.Course;
@@ -25,15 +27,17 @@ public class SkillsController {
     private TaxonomyRepository taxoRepo;
     private CourseRepository courseRepo;
     private AssociatedSkillService assosRepo;
+    private AdvertService advertRepo;
 
 
     public SkillsController(SkillRepository sRepo,UserService uRepo, TaxonomyRepository tRepo,
-    CourseRepository cRepo, AssociatedSkillService aRepo){
+    CourseRepository cRepo, AssociatedSkillService aRepo, AdvertService adRepo){
         userRepo=uRepo;
         skillRepo=sRepo;
         taxoRepo=tRepo;
         courseRepo=cRepo;
         assosRepo = aRepo;
+        advertRepo = adRepo;
     }
 
     /**
@@ -51,6 +55,7 @@ public class SkillsController {
         List<SkillTaxonomy> parent = taxoRepo.findAllByChildName(name);
         List<Course> courses = courseRepo.findAllBySkillIdName(name);
         List<AssociatedSkill> assoskills = assosRepo.findBySkillName(name);
+        List<Advert> adverts = advertRepo.findAllBySkillIdName(name);
 
         List userList = new ArrayList<User>();
         for (AssociatedSkill i : assoskills){
@@ -64,7 +69,7 @@ public class SkillsController {
             model.addAttribute("parentKey", parent);
             model.addAttribute("courseKey", courses);
             model.addAttribute("userKey", userList);
-
+            model.addAttribute("advertKey", adverts);
 
             return "skill/skillprofile";
         } else {
