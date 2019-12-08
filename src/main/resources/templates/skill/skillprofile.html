@@ -6,7 +6,9 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" rel="stylesheet">
     <link href="css/starter-template.css" rel="stylesheet">
-
+    <style>
+        #courseDropdown, #userDropdown {display: none;}
+    </style>
 </head>
 <body>
 
@@ -44,8 +46,8 @@
     </div>
 
 <div class="dropdown">
-    <button onclick="myFunction()" class="btn btn-outline-info">Avaliable Courses</button>
-    <div id="myDropdown" class="dropdown-content">
+    <button onclick="courseToggle()" class="btn btn-outline-info">Avaliable Courses</button>
+    <div id="courseDropdown" class="dropdown-content">
         <div th:if="${#lists.isEmpty(courseKey)}">
             <div>There are currently now available courses for this skill</div>
         </div>
@@ -54,13 +56,13 @@
         <thead>
         <tr>
             <th scope="col">Course Name</th>
-            <th scope="col">Description</th>
+            <th scope="col">Description </th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="currCourse : ${courseKey}">
             <th scope="row">
-                <a th:href="@{/course/{id} (id=${currCourse.id})}"
+                <a th:href="@{/courses/{id} (id=${currCourse.id})}"
                    th:id="'courseLink'+ ${currCourse.id}">
                     <span th:text="${currCourse.name}"></span>
                 </a>
@@ -73,18 +75,52 @@
     </div>
 </div>
 
+    <div class="dropdown">
+        <button onclick="userToggle()" class="btn btn-outline-info">Users with this skill</button>
+        <div id="userDropdown" class="dropdown-content">
+            <div th:if="${#lists.isEmpty(userKey)}">
+                <div>There are currently no available users for this skill</div>
+            </div>
+            <div th:if="${not #lists.isEmpty(userKey)}">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">User Name</th>
+<!--                        <th scope="col">Description</th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="currUser : ${userKey}">
+                        <th scope="row">
+                            <a th:href="@{/as/{id} (id=${currUser.id})}"
+                               th:id="'charityLink'+ ${currUser.id}">
+                                <span th:text="${currUser.username}"></span>
+                            </a>
+                        </th>
+                        <td th:text="${currUser.username}"></td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
 
 </main>
 
-<style>
-    #myDropdown {
-        display: none;
-    }
-</style>
-
 <script>
-    function myFunction() {
-        var x = document.getElementById("myDropdown");
+    function userToggle() {
+        var x = document.getElementById("userDropdown");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function courseToggle() {
+        var x = document.getElementById("courseDropdown");
         if (x.style.display === "none") {
             x.style.display = "block";
         } else {
