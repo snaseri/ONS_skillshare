@@ -2,6 +2,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.Skill;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -46,8 +47,9 @@ public class Advert {
    * @param skillId, New skill id of the Advert.
    * @return skill id of Advert.
    */
-  @Column(name = "skill_id")
-  private long skillId;
+  @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @JoinColumn(name = "skill_id")
+  private Skill skillId;
 
   /**
    * Type Id of the Advert. Type that the Advert is, {@see Type}.

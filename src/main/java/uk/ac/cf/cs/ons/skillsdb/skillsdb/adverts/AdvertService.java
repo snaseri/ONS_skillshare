@@ -55,4 +55,6 @@ public interface AdvertService {
    */
   Optional<Iterable<Advert>>  getAdverts();
 
+
+
 }
