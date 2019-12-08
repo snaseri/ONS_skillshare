@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <title>Create a Course</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/discover.css}">
+    <script src="jquery-3.4.1.min.js"></script>
+  </head>
+
+  <body>
+
+    <div th:replace=" fragments/navbar.html :: navbar">
+      <!-- Navigation -->
+    </div>
+
+    <div th:replace=" fragments/headercourse.html :: header">
+      <!-- Header -->
+    </div>
+
+
+    <div class="row">
+      <div class="container">
+
+
+
+        <h3 class="black">Discover new Skills</h3>
+        <div class="col-sm">
+          <form>
+            <div class="form-group">
+              <div id="myDropdown" class="dropdown-content">
+            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+              <a th:each="skill: ${skills}" th:value="${skill.id}" th:text="${skill.name}"><br>Default</a>
+              </div>
+            </div>
+
+<!--            <div class="form-group">-->
+<!--              <label>Skill</label>-->
+<!--              <select class="form-control">-->
+<!--                <option value="0">Please select a Skill</option>-->
+<!--                <option th:each="skill: ${skills}" th:value="${skill.id}" th:text="${skill.name}"></option>-->
+<!--              </select>-->
+<!--&lt;!&ndash;              <div class="alert alert-danger" th:errors="*{skillId}" th:if="${#fields.hasErrors('skillId')}"></div>&ndash;&gt;-->
+<!--            </div>-->
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+          txtValue = a[i].textContent || a[i].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+          } else {
+            a[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+
+  </body>
+
+
+</html>

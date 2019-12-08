@@ -2,6 +2,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts;
 
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.exceptions.AdvertNotFoundException;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -54,5 +55,7 @@ public interface AdvertService {
    * @return list of all Adverts
    */
   Optional<Iterable<Advert>>  getAdverts();
+
+  List<Advert> findAllBySkillIdName (String name);
 
 }

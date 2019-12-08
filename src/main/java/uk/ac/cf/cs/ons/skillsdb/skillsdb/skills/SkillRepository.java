@@ -25,5 +25,7 @@ public interface SkillRepository extends CrudRepository<Skill, Long> {
    * @return list of skills that match name
    */
   Optional<List<Skill>> findSkillsByName(String name);
+
+  Optional<Skill> findSkillByName(String name);
   
 }

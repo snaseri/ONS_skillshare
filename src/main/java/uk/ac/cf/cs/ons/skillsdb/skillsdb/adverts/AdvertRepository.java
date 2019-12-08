@@ -3,6 +3,8 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * AdvertRepository allows for access to the Adverts data source.
  *
@@ -15,4 +17,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdvertRepository extends CrudRepository<Advert, Long> {
   // TODO: Add any needed queries here...
+
+    List<Advert> findAllBySkillIdName(String name);
 }

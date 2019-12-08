@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.exceptions.AdvertNotFoundException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -101,7 +102,10 @@ public class AdvertServiceImpl implements AdvertService {
                     .orElseThrow( () -> new AdvertNotFoundException("Cant find Advert. Advert with id: " + id  + " not found.")) );
   }
 
-
+  @Override
+  public List<Advert> findAllBySkillIdName(String name) {
+    return repository.findAllBySkillIdName(name);
+  }
 
 
 }

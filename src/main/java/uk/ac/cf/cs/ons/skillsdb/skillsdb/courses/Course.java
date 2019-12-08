@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
- * User is a representation of a user of the SkillsDB.
+ * Course is a representation of a workshop in the SkillsDB.
  *
  * @author  Sepehr Naseri
  * @version 1.0
