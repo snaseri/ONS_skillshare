@@ -33,6 +33,14 @@ INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (2, 1, 3);
 INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (3, 1, 9);
 INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (4, 2, 9);
 
+INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (5, 4, 5);
+INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (6, 4, 6);
+INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (7, 4, 7);
+INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (8, 4, 8);
+INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (9, 4, 9);
+
+INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (10, 10, 11);
+INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (11, 10, 12);
 
 insert into Users (id, username, password) values (2, 'gflicker1', 'bpSPOJN');
 insert into Users (id, username, password) values (1, 'rstickley0', 'RPdkup');
