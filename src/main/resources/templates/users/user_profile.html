@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Charity Profile</title>
@@ -29,18 +29,9 @@
     </div>
 
     <div class="row">
-
-        <form action="/deleteUser" class="form-inline my-2 my-lg-0" method="delete">
-
-
-            <input class="btn btn-outline-success my-2 my-sm-0"
-                   id="delete"
-                   type="delete"
-                   value="delete"/>
-
-        </form>
+        <p th:text="${uid}"></p>
+        <button><a th:href="@{/deleteUser/(id=${uid})}">Delete</a></button>
     </div>
-
 
 
     </div>

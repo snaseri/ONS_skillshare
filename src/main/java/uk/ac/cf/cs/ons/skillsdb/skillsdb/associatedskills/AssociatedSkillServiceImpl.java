@@ -20,4 +20,9 @@ public class AssociatedSkillServiceImpl implements AssociatedSkillService {
     public List<AssociatedSkill> findBySkillName(String searchTerm) {
         return associatedSkillRepository.findABySkillName(searchTerm);
     }
+
+    @Override
+    public void deleteAssociatedSkillsByUserId(long id) {
+        associatedSkillRepository.deleteAssociatedSkillsByUserId(id);
+    }
 }
