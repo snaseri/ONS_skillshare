@@ -51,10 +51,10 @@ public interface UserRepositoryImpl extends UserRepository, JpaRepository<User, 
     /**
      * Delete a user.
      *
-     * @param user, User to delete.
+     * @param id, User to delete.
      */
     @Override
-    void delete(User user);
+    void deleteUserById(long id);
 
     /**
      * Save a User.
