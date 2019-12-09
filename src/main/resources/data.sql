@@ -93,12 +93,17 @@ insert into Associated_Skills (id, user_id, skill_id, rating) values (7, 3, 1, 4
 insert into Associated_Skills (id, user_id, skill_id, rating) values (8, 8, 3, 4);
 insert into Associated_Skills (id, user_id, skill_id, rating) values (9, 1, 2, 5);
 insert into Associated_Skills (id, user_id, skill_id, rating) values (10, 3, 2, 3);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (11, 8, 4, 4);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (12, 1, 4, 5);
+insert into Associated_Skills (id, user_id, skill_id, rating) values (13, 3, 4, 5);
 
-insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (1, 'Java', 'Basics of object oriented programming', false, 3.00, '2008-11-11 13:23:44', 1, 2);
+insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (1, 'Java', 'Basics of object oriented programming', false, 3.00, '2008-11-11 13:23:44', 1, 4);
 insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (2, 'Python', 'a very coooooool course', true, 0, '2010-11-11 13:23:44', 1, 3);
 insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (3, 'The Course', 'for fun and a good time', true, 0, '2019-11-11 13:23:44', 1, 1);
 insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (4, 'Free flask', 'a very practical course', true, 0, '2019-11-11 13:23:44', 1, 1);
-insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (5, 'Skill share', 'practical and lots of fun', false, 5, '2020-11-11 13:23:44', 1, 2);
+insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (5, 'Skill share', 'practical and lots of fun', false, 5, '2020-11-11 13:23:44', 1, 4);
+insert into Courses (id, name, description, is_free, price, posted, user_creator, skill_id) values (6, 'Object orientated Java', 'practical and endless of fun', true, 0, '2020-11-11 13:00:00', 1, 4);
+
 
 
 
