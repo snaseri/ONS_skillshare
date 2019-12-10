@@ -91,6 +91,10 @@ public class Advert {
     return posted.format (DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") );
   }
 
+  public String getUrl() {
+    return "/advert/" + getId();
+  }
+
 
 }
 
