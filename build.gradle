@@ -52,13 +52,15 @@ dependencies {
 	testCompile 'junit:junit:4.12'
 }
 
+
+
+
+/* Comment to use Main profile (MySQL), uncomment to use Demo profile (h2) */
+
 bootRun {
 	systemProperty 'spring.profiles.active', 'demo'
 	main = 'uk.ac.cf.cs.ons.skillsdb.skillsdb.SkillsdbApplication'
-
-
 }
-
 
 
 

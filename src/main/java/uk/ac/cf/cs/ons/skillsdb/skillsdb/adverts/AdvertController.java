@@ -105,8 +105,9 @@ public class AdvertController {
         try {
             Optional<Advert> advert = service.readAdvert(id);
 
-            skill = skillRepository.findById( advert.get().getSkillId() ).get().getName();
+//            skill = skillRepository.findById( advert.get().getSkillId() ).get().getName();
             type = typeRepository.findById( advert.get().getTypeId() ).get().getName().toString();
+            skill = advert.get().getSkillId().getName();
 
             model.addAttribute("advert", advert.get());
             model.addAttribute("skill", skill);

@@ -4,7 +4,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Optional;
+=======
+>>>>>>> d71bf734df2a45a23e40f25c1290d9be5809f1a1
 
 /**
  * AdvertRepository allows for access to the Adverts data source.
@@ -17,6 +20,7 @@ import java.util.Optional;
  */
 @Repository
 public interface AdvertRepository extends CrudRepository<Advert, Long> {
+<<<<<<< HEAD
 
     /**
      * Find all Adverts where the title is like title.
@@ -26,4 +30,9 @@ public interface AdvertRepository extends CrudRepository<Advert, Long> {
      */
     Optional<List<Advert>> findByTitleContains(String title);
 
+=======
+  // TODO: Add any needed queries here...
+
+    List<Advert> findAllBySkillIdName(String name);
+>>>>>>> d71bf734df2a45a23e40f25c1290d9be5809f1a1
 }
