@@ -45,15 +45,9 @@ public interface CourseRepository {
      */
     List<Course> findByPrice(Double price);
 
-<<<<<<< HEAD
     public Course save(Course aCourse);
-=======
+
     List<Course> findAllBySkillIdName(String name);
->>>>>>> d71bf734df2a45a23e40f25c1290d9be5809f1a1
-
-
-
-
 }
 
 
