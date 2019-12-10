@@ -29,8 +29,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
-        http.csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login")).and().authorizeRequests()
-                .antMatchers("/index").hasRole("USER").and().formLogin().defaultSuccessUrl("/index")
+        http.csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login")).and()
+                .authorizeRequests()
+                .antMatchers("/index").hasRole("USER")
+/*
+                .antMatchers("/advert/create").hasRole("USER")
+*/
+                .antMatchers("/advert/**").hasRole("USER")
+                .antMatchers("/course/create").hasRole("USER")
+                .antMatchers("/courses/{id}").hasRole("USER")
+                .antMatchers("/skill/{i}").hasRole("USER")
+                .antMatchers("/discover" ).hasRole("USER")
+                .and().formLogin().defaultSuccessUrl("/index")
                 .loginPage("/login").and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
     }
 

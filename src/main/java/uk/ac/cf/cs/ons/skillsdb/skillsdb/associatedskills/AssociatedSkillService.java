@@ -8,4 +8,6 @@ public interface AssociatedSkillService {
     Optional<AssociatedSkill> findByASIndex(long id);
 
     List<AssociatedSkill> findBySkillName (String searchTerm);
+
+    void deleteAssociatedSkillsByUserId(long id);
 }

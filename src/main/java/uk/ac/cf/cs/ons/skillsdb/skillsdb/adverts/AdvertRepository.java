@@ -26,4 +26,7 @@ public interface AdvertRepository extends CrudRepository<Advert, Long> {
      */
     Optional<List<Advert>> findByTitleContains(String title);
 
+  // TODO: Add any needed queries here...
+
+    List<Advert> findAllBySkillIdName(String name);
 }

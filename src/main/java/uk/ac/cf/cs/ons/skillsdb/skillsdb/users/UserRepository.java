@@ -41,9 +41,9 @@ public interface UserRepository  {
     /**
      * Delete a user.
      *
-     * @param user, User to delete.
+     * @param id, User to delete.
      */
-    void delete(User user);
+    void deleteUserById(long id);
 
     /**
      * Save a User.

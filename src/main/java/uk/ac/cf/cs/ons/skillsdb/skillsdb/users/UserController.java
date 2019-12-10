@@ -3,10 +3,10 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.associatedskills.AssociatedSkillService;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,13 +22,16 @@ public class UserController {
 
     private UserService service;
 
+    private AssociatedSkillService asService;
+
     /**
      * Allows for a UserController to be created with an implementation of UserService.
      *
      * @param service, implementation of UserService.
      */
-    public UserController(UserService service) {
+    public UserController(UserService service, AssociatedSkillService asService) {
         this.service = service;
+        this.asService = asService;
     }
 
     /**
@@ -44,6 +47,7 @@ public class UserController {
 
         if (user.isPresent()) {
             model.addAttribute("userKey", user.get());
+            model.addAttribute("uid", id);
             return "users/user_profile";
         } else {
             return "404";
@@ -68,6 +72,15 @@ public class UserController {
         } else {
             return "404";
         }
+
+    }
+
+    @RequestMapping("deleteUser")
+    public String deleteUser(@RequestParam("id") long id){
+        service.deleteUserById(id);
+        asService.deleteAssociatedSkillsByUserId(id);
+        return "index";
+
 
     }
 }

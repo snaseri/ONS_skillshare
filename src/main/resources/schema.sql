@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS AssociatedTeams (
 CREATE TABLE IF NOT EXISTS Skills (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
-    description TEXT(300) NOT NULL
+    description TEXT(500) NOT NULL
 );
 
 /*
@@ -128,5 +128,15 @@ CREATE TABLE IF NOT EXISTS Enrolled_On_Course (
 	course_id INT NOT NULL,
     FOREIGN KEY (course_id) REFERENCES Courses(id),
     FOREIGN KEY (user_creator) REFERENCES Users(id)
+);
+
+
+--  <<Skills>> can link to other <<Skills>>.
+CREATE TABLE IF NOT EXISTS TAXONOMY (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    parent_id INT NOT NULL,
+    child_id INT NOT NULL,
+    FOREIGN KEY (parent_id) REFERENCES Skills(id),
+    FOREIGN KEY (child_id) REFERENCES Skills(id)
 );
 
