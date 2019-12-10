@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Advert:</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace=" fragments/navbar.html :: navbar">
+    <!-- Navigation -->
+</div>
+
+<div th:replace=" fragments/header.html :: header">
+    <!-- Header -->
+</div>
+
+<div th:replace=" fragments/navbar.html :: pagebar">
+    <!-- Page Navbar -->
+</div>
+
+<div class="row">
+    <div class="container">
+        <form method="POST" th:action="@{/search/}">
+            <div class="col-8">
+                <input type="text" id="term" name="term" placeholder="Python, Java">
+            </div>
+            <div class="col-3">
+                <select id="type" name="type">
+                    <option value="USER">User</option>
+                    <option value="ADVERT">Advert</option>
+                    <option value="COURSE">Course</option>
+                </select>
+            </div>
+            <div class="col-1">
+                <button type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row" th:if="${#lists.isEmpty(results)}">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <p>No Results</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" th:if="${not #lists.isEmpty(results)}">
+    <div class="container" th:each="result : ${results}">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${result.title}"></h5>
+                <h6 class="card-subtitle mb-2 text-muted" th:text="${result.descripion}">Card subtitle</h6>
+                <a th:href="@{${result.url}}" class="card-link">Go</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
