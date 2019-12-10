@@ -1,5 +1,6 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.courses;
 
+import javax.crypto.Cipher;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,8 @@ public interface CourseRepository {
     Optional<Course> findById(Long id);
 
 
+    Optional<List<Course>> findByNameContains(String terms);
+
     /**
      * Find a Comment by name.
      *
@@ -32,6 +35,7 @@ public interface CourseRepository {
      * @return List Of the selected courses.
      */
     List<Course> findByName(String name);
+
 
     /**
      * Find a Comment by price.
@@ -41,9 +45,9 @@ public interface CourseRepository {
      */
     List<Course> findByPrice(Double price);
 
-
-
     public Course save(Course aCourse);
+
+
 
 
 }
