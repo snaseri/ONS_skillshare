@@ -16,7 +16,6 @@ import java.util.Properties;
 
 @Configuration
 @PropertySource({"application.properties"})
-@EnableWebMvc
 @ComponentScan
 public class BeanConfig {
 
