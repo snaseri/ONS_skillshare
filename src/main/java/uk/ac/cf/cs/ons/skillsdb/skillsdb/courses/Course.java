@@ -56,7 +56,6 @@ public class Course {
      *
      * @param description New description for the course.
      * @return description of the course.
-     *
      */
 
     @Column(name = "description")
@@ -70,7 +69,6 @@ public class Course {
      *
      * @param isFree Wether the course is free or not.
      * @return Wether the course is free or not.
-     *
      */
     @Column(name = "is_free")
     private Boolean isFree;
@@ -82,7 +80,6 @@ public class Course {
      *
      * @param price new price for the course.
      * @return the price for the course.
-     *
      */
     @Column(name = "price")
     @Min(0)
@@ -98,7 +95,6 @@ public class Course {
      *
      * @param date new Date for the course.
      * @return date of the course.
-     *
      */
     @Column(name = "posted")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -116,7 +112,6 @@ public class Course {
      *
      * @param user_creator new User for the course.
      * @return user of the course.
-     *
      */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_creator")
@@ -129,11 +124,15 @@ public class Course {
      *
      * @param skill_id new Skill for the course.
      * @return skill of the course.
-     *
      */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "skill_id")
     @NotNull(message = "Please Select a skill")
     private Skill skillId;
+
+
+    public String getUrl() {
+        return "/course/" + id;
+    }
 
 }
