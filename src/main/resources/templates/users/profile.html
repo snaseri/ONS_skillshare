@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Charity Profile</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" rel="stylesheet">
+    <link href="css/starter-template.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+
+<main class="container mt-4" role="main">
+    <div class="starter-template">
+
+
+
+                <H3 th:text="${username}">
+
+                </H3>
+
+
+
+
+
+    <div th:if="${userauthorised == true}" class="row">
+
+        <h1> AUTHORISED</h1>
+        <p th:text="${uid}"></p>
+        <button><a th:href="@{/deleteUser/(id=${uid})}">Delete</a></button>
+    </div>
+
+    </div>
+</main>
+
+
+</body>
+</html>

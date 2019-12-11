@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.repository.UserRepository;
@@ -120,6 +121,22 @@ public class loginController {
         }
         return false;
     }
+
+
+
+
+    public class SecurityController {
+
+        @RequestMapping(value = "/username", method = RequestMethod.GET)
+        @ResponseBody
+        public String currentUserName(Authentication authentication) {
+            return authentication.getName();
+        }
+
+    }
+
+
+
 
 
 

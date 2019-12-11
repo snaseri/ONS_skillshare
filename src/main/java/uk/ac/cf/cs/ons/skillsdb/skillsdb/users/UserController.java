@@ -1,12 +1,17 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.associatedskills.AssociatedSkillService;
 
 import javax.swing.text.html.Option;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,4 +88,58 @@ public class UserController {
 
 
     }
+
+
+
+    @GetMapping("profile/{username}")
+    public ModelAndView showUsernamePage(@PathVariable("username") String username, Model model) {
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        User user = service.findByUsername(username);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentuser = authentication.getName();
+
+        if(user != null) {
+            modelAndView.setViewName("users/profile");
+            model.addAttribute("user", user);
+            modelAndView.addObject("username", user.getUsername());
+            modelAndView.addObject("uid", user.getId());
+
+            if(username.equals(currentuser)) {
+
+                Boolean userauthorised = true;
+                modelAndView.addObject("userauthorised", userauthorised);
+            }
+
+            else {
+                Boolean userauthorised = false;
+                modelAndView.addObject("userauthorised", userauthorised);
+            }
+
+
+
+        }
+
+        else {
+
+            modelAndView.setViewName("404");
+        }
+
+
+        return modelAndView;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
