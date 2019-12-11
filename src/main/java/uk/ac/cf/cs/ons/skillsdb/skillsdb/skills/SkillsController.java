@@ -18,6 +18,7 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class SkillsController {
@@ -55,7 +56,7 @@ public class SkillsController {
         List<SkillTaxonomy> parent = taxoRepo.findAllByChildName(name);
         List<Course> courses = courseRepo.findAllBySkillIdName(name);
         List<AssociatedSkill> assoskills = assosRepo.findBySkillName(name);
-        List<Advert> adverts = advertRepo.findAllBySkillIdName(name);
+        Optional<Set<Advert>> adverts = advertRepo.findAllBySkillIdName(name);
 
         List userList = new ArrayList<User>();
         for (AssociatedSkill i : assoskills){
@@ -69,7 +70,7 @@ public class SkillsController {
             model.addAttribute("parentKey", parent);
             model.addAttribute("courseKey", courses);
             model.addAttribute("userKey", userList);
-            model.addAttribute("advertKey", adverts);
+            model.addAttribute("advertKey", adverts.get());
 
             return "skill/skillprofile";
         } else {

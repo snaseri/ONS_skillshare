@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.exceptions.AdvertNotFoundException;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.SkillRepository;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.types.TypeRepository;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.UserRepository;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -23,30 +25,36 @@ import java.util.Optional;
  */
 @Log
 @Controller
+@SessionAttributes("advert")
 @RequestMapping("/advert")
 public class AdvertController {
 
-    private final static String CREATE_PAGE = "adverts/create";
-    private final static String ADVERT_PAGE = "adverts/advert";
+    public final static String CREATE_PAGE = "adverts/create";
+    public final static String ADVERT_PAGE = "adverts/advert";
 
     private SkillRepository skillRepository;
     private TypeRepository typeRepository;
+    private UserRepository userRepository;
 
     private AdvertService service;
 
     /**
-     * Create a instance of AdvertController by injecting an implementation of {@see SkillRepository}, {@see TypeRepository},
-     * and {@see TypeRepository} interfaces.
+     * Creates an instance of AdvertController by injecting an implementation of {@see AdvertService}, {@see TypeRepository},
+     * {@see SkillRepository}, {@see UserRepository} interfaces.
      *
      * @param service
      * @param skillRepository
      * @param typeRepository
+     * @param userRepository
      */
     @Autowired
-    public AdvertController(AdvertService service, SkillRepository skillRepository, TypeRepository typeRepository) {
+    public AdvertController(AdvertService service, SkillRepository skillRepository,
+                            TypeRepository typeRepository, UserRepository userRepository) {
+        log.info("Creating AdvertController...");
         this.service = service;
         this.skillRepository = skillRepository;
         this.typeRepository = typeRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -84,7 +92,6 @@ public class AdvertController {
         }
 
         service.createAdvert(advert);
-
         // TODO: Carl, Is there a better way of redirecting.
         return "redirect:/advert/" + advert.getId();
     }
@@ -101,17 +108,20 @@ public class AdvertController {
 
         String skill;
         String type;
+        User user;
 
         try {
             Optional<Advert> advert = service.readAdvert(id);
 
-//            skill = skillRepository.findById( advert.get().getSkillId() ).get().getName();
             type = typeRepository.findById( advert.get().getTypeId() ).get().getName().toString();
             skill = advert.get().getSkillId().getName();
+            user = userRepository.findById( advert.get().getUserId()).get();
+
 
             model.addAttribute("advert", advert.get());
             model.addAttribute("skill", skill);
             model.addAttribute("type", type);
+            model.addAttribute("user", user);
 
         } catch (AdvertNotFoundException e) {
             e.printStackTrace();

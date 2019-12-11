@@ -8,6 +8,8 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.exceptions.AdvertNotFoundExcept
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * AdvertServiceImpl is the implementation of {@see AdvertService}.
@@ -25,7 +27,7 @@ public class AdvertServiceImpl implements AdvertService {
   private AdvertRepository repository;
 
   /**
-   * Allows for Creation of an AdvertService through Depenency Injection (DI) by injecting
+   * Allows for Creation of an AdvertService through depenency injection (DI) by injecting
    * a implementation of the AdvertRepository.
    *
    * @param repository AdvertRepository data source.
@@ -45,7 +47,14 @@ public class AdvertServiceImpl implements AdvertService {
     log.info("Create Advert: " + advert);
 
     // TODO: This should be automatic when users are created.
-    advert.setUserId(1);
+    // but for now, While I am waiting for my team to integrate I will use a random user.
+
+    Random rnd = new Random();
+    int max = 30;
+    int min = 1;
+    long id = (long) (Math.random() * ((max - min) + 1)) + min;
+
+    advert.setUserId(id);
     advert.setPosted(LocalDateTime.now());
     repository.save(advert);
   }
@@ -80,13 +89,13 @@ public class AdvertServiceImpl implements AdvertService {
   }
 
   /**
-   * Get all Adverts
+   * Find all Adverts.
    *
-   * @return list of all Adverts
+   * @return Optional iterable of all Adverts.
    */
   @Override
-  public Optional<Iterable<Advert>> getAdverts() {
-    return Optional.of( repository.findAll() );
+  public Optional<Iterable<Advert>> findAll() {
+    return Optional.empty();
   }
 
   /**
@@ -103,7 +112,7 @@ public class AdvertServiceImpl implements AdvertService {
   }
 
   @Override
-  public List<Advert> findAllBySkillIdName(String name) {
+  public Optional<Set<Advert>> findAllBySkillIdName(String name) {
     return repository.findAllBySkillIdName(name);
   }
 
