@@ -75,7 +75,7 @@ public class SkillsController {
             model.addAttribute("parentKey", parent);
             model.addAttribute("courseKey", courses);
             model.addAttribute("userKey", userList);
-            model.addAttribute("advertKey", adverts.get());
+            model.addAttribute("advertKey", adverts1);
 
             return "skill/skillprofile";
         } else {
