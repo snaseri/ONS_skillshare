@@ -40,8 +40,13 @@
         <p th:text="*{enrolled}"></p>
         <form  th:object="${course}" method="post">
         <button class="btn btn-primary" type="submit" formmethod="post">Enroll</button>
+            <br>
+            <div id=missingEnrollMessage th:if="${enrollmessage !=  null }">
+                <p class="font-weight-light list-group-item position-relative" th:text="${enrollmessage}"></p>
+            </div>
         </form>
     </div>
+
 
 
 

@@ -62,15 +62,29 @@ public class CourseController {
 
     @GetMapping("/courses/{id}")
     public String coursePage(@PathVariable("id") Long id, Model model) {
+
+            String enrollmessage = null;
         
             Optional<Course> course = courseRepo.findById(id);
             if (!course.isPresent()) {
                 return "404";
             }
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String username =  authentication.getName();
+
+        User user = userRepo.findByUsername(username);
+
+
+        if(enrollRepo.findAllByUserIdAndCourseId(user.getId(),id).isPresent()) {
+            enrollmessage = "You have already enrolled for this course";
+        }
+
             int enrolledUsers = enrollRepo.countAllByCourseIdIs(course.get().getId());
             model.addAttribute("course", course.get());
             model.addAttribute("enrolled", enrolledUsers);
+            model.addAttribute("enrollmessage", enrollmessage);
 
 
         return "courses/course";
@@ -79,6 +93,8 @@ public class CourseController {
     @PostMapping("/courses/{id}")
     public String courseEnroll(@PathVariable("id") Long id, Model model) {
 
+
+        String enrollmessage = null;
 
         Optional<Course> course = courseRepo.findById(id);
         if (!course.isPresent()) {
@@ -103,22 +119,23 @@ public class CourseController {
 
 
         if(enrollRepo.findAllByUserIdAndCourseId(user.getId(),id).isPresent()) {
-
-            return "usearch/index";
+            enrollmessage = "You have enrolled for this course";
+            return "redirect:/courses/" + id;
         }
         else {
             enroll.setCourse(course.get());
             enroll.setUser(userRepo.findUserByIndex(user.getId()).get());
-
             enrollRepo.save(enroll);
+            enrolledUsers = enrollRepo.countAllByCourseIdIs(course.get().getId());
+            enrollmessage = "You have successfully enrolled on this course";
         }
 
         model.addAttribute("course", course.get());
         model.addAttribute("enroll", enroll);
         model.addAttribute("enrolled", enrolledUsers);
-        model.addAttribute("");
+        model.addAttribute("enrollmessage", enrollmessage);
 
-        return "usearch/index";
+        return "/courses/course";
     }
 
 
