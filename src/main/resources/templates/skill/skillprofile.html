@@ -3,14 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Course Profile</title>
+    <link href="css/starter-template.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" rel="stylesheet">
-    <link href="css/starter-template.css" rel="stylesheet">
+
     <style>
         #courseDropdown, #userDropdown, #advertDropdown {display: none;}
     </style>
 </head>
 <body>
+
+
+<div th:replace=" fragments/navbar.html :: navbar">
+    <!-- Navigation -->
+</div>
+
+<header class="title" th:fragment="navbar">
+    <div class="container">
+        <h1 class="title--header white" th:text="${skillKey.name}">SkillsDB</h1>
+        <h5 class="font-weight-light text-sm-left white" th:text="${skillKey.description}">Discover</h5>
+    </div>
+</header>
 
 <div id=missingCourseMessage th:if="${skillKey ==  null }">
     <div>No matching skill</div>
@@ -20,20 +35,14 @@
     <div class="starter-template">
         <div id=skillInfo th:if="${skillKey}">
             <div class="col-md">
-                <b><h1 class="text-primary" th:text="${skillKey.name}"></h1></b>
-                <br>
-                <p><b>Description:</b></p>
-                <div>
-                    <p th:text="${skillKey.description}"></p>
-                </div>
-                <p th:if="${not #lists.isEmpty(parentKey)}"><b>Parents of the skill:</b></p>
+                <p th:if="${not #lists.isEmpty(parentKey)}"><b>Based of the skill:</b></p>
                 <div>
                     <ul>
                         <li th:each="taxonomy: ${parentKey}"><a th:href="@{/skill/{id} (id=${taxonomy.parent.getName()})}"
                                                                th:text="${taxonomy.parent.getName()}" ></a></li>
                     </ul>
                 </div>
-                <p th:if="${not #lists.isEmpty(childKey)}"><b>Children of the skill:</b></p>
+                <p th:if="${not #lists.isEmpty(childKey)}"><b>Sub-skill of:</b></p>
                 <div>
                     <ul>
                         <li th:each="taxonomy: ${childKey}"><a th:href="@{/skill/{id} (id=${taxonomy.child.getName()})}"
@@ -46,7 +55,7 @@
     </div>
 
 <div class="dropdown">
-    <button onclick="courseToggle()" class="btn btn-outline-info">Avaliable Courses</button>
+    <button onclick="courseToggle()" class="btn btn-outline-info position-relative">Avaliable Courses</button>
     <div id="courseDropdown" class="dropdown-content">
         <div th:if="${#lists.isEmpty(courseKey)}">
             <div>There are currently no available courses for this skill</div>
@@ -76,7 +85,7 @@
 </div>
 
     <div class="dropdown">
-        <button onclick="userToggle()" class="btn btn-outline-info">Users with this skill</button>
+        <button onclick="userToggle()" class="btn btn-outline-info position-relative">Users with this skill</button>
         <div id="userDropdown" class="dropdown-content">
             <div th:if="${#lists.isEmpty(userKey)}">
                 <div>There are currently no available users for this skill</div>
@@ -107,7 +116,7 @@
     </div>
 
     <div class="dropdown">
-        <button onclick="advertToggle()" class="btn btn-outline-info">Adverts for Skill</button>
+        <button onclick="advertToggle()" class="btn btn-outline-info position-relative">Adverts for Skill</button>
         <div id="advertDropdown" class="dropdown-content">
             <div th:if="${#lists.isEmpty(advertKey)}">
                 <div>There are currently no available adverts for this skill</div>
