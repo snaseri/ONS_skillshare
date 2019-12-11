@@ -132,7 +132,7 @@ public class Course {
 
 
     public String getUrl() {
-        return "/course/" + id;
+        return "/courses/" + id;
     }
 
 }

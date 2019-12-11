@@ -19,24 +19,8 @@
     <!-- Page Navbar -->
 </div>
 
-<div class="row">
-    <div class="container">
-        <form method="POST" th:action="@{/search/}">
-            <div class="col-8">
-                <input type="text" id="term" name="term" placeholder="Python, Java">
-            </div>
-            <div class="col-3">
-                <select id="type" name="type">
-                    <option value="USER">User</option>
-                    <option value="ADVERT">Advert</option>
-                    <option value="COURSE">Course</option>
-                </select>
-            </div>
-            <div class="col-1">
-                <button type="submit">Search</button>
-            </div>
-        </form>
-    </div>
+<div th:replace=" fragments/search.html :: search">
+    <!-- Page Search-->
 </div>
 
 <div class="row" th:if="${#lists.isEmpty(results)}">
@@ -58,6 +42,7 @@
                 <a th:href="@{${result.url}}" class="card-link">Go</a>
             </div>
         </div>
+        <br>
     </div>
 </div>
 
