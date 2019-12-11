@@ -58,6 +58,11 @@ public class SkillsController {
         List<AssociatedSkill> assoskills = assosRepo.findBySkillName(name);
         Optional<Set<Advert>> adverts = advertRepo.findAllBySkillIdName(name);
 
+
+        List<Advert> adverts1 = new ArrayList<>();
+
+        adverts.ifPresent( set -> set.forEach(adverts1::add) );
+
         List userList = new ArrayList<User>();
         for (AssociatedSkill i : assoskills){
             userList.add(i.getUser());
