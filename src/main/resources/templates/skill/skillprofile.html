@@ -101,8 +101,8 @@
                     <tbody>
                     <tr th:each="currUser : ${userKey}">
                         <th scope="row">
-                            <a th:href="@{/as/{id} (id=${currUser.id})}"
-                               th:id="'charityLink'+ ${currUser.id}">
+                            <a th:href="@{/profile/{id} (id=${currUser.username})}"
+                               th:id="'userLink'+ ${currUser.username}">
                                 <span th:text="${currUser.username}"></span>
                             </a>
                         </th>
