@@ -19,7 +19,7 @@ import java.util.Optional;
  * @url     https://spring.io/guides/gs/accessing-data-jpa/
  */
 @Repository
-public interface UserRepositoryImpl extends UserRepository, JpaRepository<User, Long> {
+public interface UserRepositoryImpl extends UserRepository, CrudRepository<User, Long> {
 
     /**
      * Find a User by username.
