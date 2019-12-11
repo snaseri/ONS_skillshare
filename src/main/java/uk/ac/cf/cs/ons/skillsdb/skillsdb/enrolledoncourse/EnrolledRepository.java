@@ -29,6 +29,8 @@ public interface EnrolledRepository {
 
     int countAllByCourseIdIs(Long id);
 
+    Optional<EnrolledOnCourse> findAllByUserIdAndCourseId(long userId, long courseId);
+
 }
 
 

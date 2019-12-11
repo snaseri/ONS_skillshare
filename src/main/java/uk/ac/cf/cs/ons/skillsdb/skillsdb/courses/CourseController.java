@@ -1,5 +1,7 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.courses;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +13,7 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.enrolledoncourse.EnrolledOnCourse;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.enrolledoncourse.EnrolledRepository;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.SkillRepository;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.UserService;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -21,11 +24,14 @@ public class CourseController {
     private CourseRepository courseRepo;
     private SkillRepository skillRepo;
     private EnrolledRepository enrollRepo;
+    private UserService userRepo;
 
-    public CourseController(CourseRepository aRepo, SkillRepository sRepo, EnrolledRepository eRepo) {
+    public CourseController(CourseRepository aRepo, SkillRepository sRepo, EnrolledRepository eRepo, UserService uRepo) {
         courseRepo = aRepo;
         skillRepo = sRepo;
         enrollRepo = eRepo;
+        userRepo = uRepo;
+
     }
 
 
@@ -81,23 +87,38 @@ public class CourseController {
 
         int enrolledUsers = enrollRepo.countAllByCourseIdIs(course.get().getId());
         //TODO set the user as the logged in user
-        User defaultUser = new User();
-        defaultUser.setPassword("password");
-        defaultUser.setUsername("username");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String username =  authentication.getName();
+
+        User user = userRepo.findByUsername(username);
+
+
+//        User defaultUser = new User();
+//        defaultUser.setPassword("password");
+//        defaultUser.setUsername("username");
 
         EnrolledOnCourse enroll = new EnrolledOnCourse();
 
-        enroll.setCourse(course.get());
-        enroll.setUser(defaultUser);
 
-        //TODO add validations so a user can't enroll on the same course twice
-        enrollRepo.save(enroll);
+        if(enrollRepo.findAllByUserIdAndCourseId(user.getId(),id).isPresent()) {
+
+            return "usearch/index";
+        }
+        else {
+            enroll.setCourse(course.get());
+            enroll.setUser(userRepo.findUserByIndex(user.getId()).get());
+
+            enrollRepo.save(enroll);
+        }
 
         model.addAttribute("course", course.get());
         model.addAttribute("enroll", enroll);
         model.addAttribute("enrolled", enrolledUsers);
+        model.addAttribute("");
 
-        return "index";
+        return "usearch/index";
     }
 
 
