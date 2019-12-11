@@ -14,6 +14,7 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 
 @Service
@@ -77,7 +78,7 @@ public class SearchServiceImpl implements SearchService {
 
         List<SearchResult> results = new ArrayList<>();
 
-        Optional<List<Advert>> adverts = advertRepository.findByTitleContains(terms);
+        Optional<Set<Advert>> adverts = advertRepository.findByTitleContains(terms);
 
         if ( adverts.isPresent() ) {
             for(Advert a: adverts.get()) {

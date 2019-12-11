@@ -4,6 +4,7 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.adverts.exceptions.AdvertNotFoundExcept
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * AdvertService defines a Contract for AdvertServices to implement...
@@ -50,12 +51,18 @@ public interface AdvertService {
   void deleteAdvert(long id) throws AdvertNotFoundException;
 
   /**
-   * Get all Adverts
+   * Find all Adverts.
    *
-   * @return list of all Adverts
+   * @return Optional iterable of all Adverts.
    */
-  Optional<Iterable<Advert>>  getAdverts();
+  Optional<Iterable<Advert>>  findAll();
 
-  List<Advert> findAllBySkillIdName (String name);
+  /**
+   * Find all Adverts with associated skill.
+   *
+   * @param skill, Skill to search Adverts for.
+   * @return Optional set of matching adverts.
+   */
+  Optional<Set<Advert>> findAllBySkillIdName(String skill);
 
 }

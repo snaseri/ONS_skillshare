@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author  Kyle Davies
  * @version 1.0
- * @since   2019-11-20
+ * @since   2019-12-11
  */
 @Data
 @Entity
@@ -88,15 +88,23 @@ public class Advert {
   @Column(name = "posted", columnDefinition = "TIMESTAMP")
   private LocalDateTime posted;
 
-
-  public String prettyDate() {
-    return posted.format (DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") );
-  }
-
+  /**
+   * Get the URL of the Advert.
+   *
+   * @return url of Advert.
+   */
   public String getUrl() {
     return "/advert/" + getId();
   }
 
+  /**
+   * Get the date in a pretty format.
+   *
+   * @return date of Advert.
+   */
+  public String prettyDate() {
+    return posted.format (DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") );
+  }
 
 }
 
