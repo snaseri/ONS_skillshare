@@ -61,7 +61,7 @@ public class loginController {
 
         if (!(auth instanceof AnonymousAuthenticationToken)) {
 
-            return new ModelAndView("forward:/index");
+            return new ModelAndView("forward:/search/");
         } else {
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("login");
