@@ -32,4 +32,6 @@ public interface AssociatedSkillRepository extends CrudRepository<AssociatedSkil
     List<AssociatedSkill> findABySkillName(String searchTerm);
 
     void deleteAssociatedSkillsByUserId(long id);
+
+    List<AssociatedSkill> findByuser_id(long id);
 }
