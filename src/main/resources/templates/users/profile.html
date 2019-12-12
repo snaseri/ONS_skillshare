@@ -30,19 +30,24 @@
 
 
 
-                <H3 th:text="${username}">
 
-                </H3>
+        <H3 style="font-weight:bold;"> User: </H3><H3 th:text="${username}"> </H3>
+        <h3 style="font-weight:bold;">Skills: </h3>
+        <div th:if="${!associatedskill.isEmpty()}" class="skills">
+         <tr th:each="skill: ${associatedskill}">
+        <td th:text="${skill.getSkill().name} + '&nbsp; &nbsp; Rating: &nbsp;' +  ${skill.rating}"     />
+
+    </tr>
+    </div>
 
 
 
+        <br>
 
 
     <div th:if="${userauthorised == true}" class="row">
 
-        <h1> AUTHORISED</h1>
-        <p th:text="${uid}"></p>
-        <button><a th:href="@{/deleteUser/(id=${uid})}">Delete</a></button>
+        <button><a th:href="@{/deleteUser/(id=${uid})}">Delete User</a></button>
     </div>
 
     </div>

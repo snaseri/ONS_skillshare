@@ -10,4 +10,8 @@ public interface AssociatedSkillService {
     List<AssociatedSkill> findBySkillName (String searchTerm);
 
     void deleteAssociatedSkillsByUserId(long id);
+
+    List<AssociatedSkill> findByuser_id(long id);
+
+
 }

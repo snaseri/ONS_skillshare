@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.associatedskills.AssociatedSkill;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.associatedskills.AssociatedSkillService;
 
 import javax.swing.text.html.Option;
@@ -99,7 +100,13 @@ public class UserController {
         User user = service.findByUsername(username);
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User loggedinuser = service.findByUsername(authentication.getName());
         String currentuser = authentication.getName();
+
+        List<AssociatedSkill> associatedSkill = asService.findByuser_id(user.getId());
+        modelAndView.addObject("associatedskill", associatedSkill);
+
+
 
         if(user != null) {
             modelAndView.setViewName("users/profile");
