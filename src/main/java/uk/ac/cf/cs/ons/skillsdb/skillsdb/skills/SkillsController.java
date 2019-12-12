@@ -15,10 +15,7 @@ import uk.ac.cf.cs.ons.skillsdb.skillsdb.skilltaxonomy.TaxonomyRepository;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.UserService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class SkillsController {
@@ -50,6 +47,7 @@ public class SkillsController {
      */
     @GetMapping("skill/{i}")
     public String showUserPage(@PathVariable("i") String name, Model model){
+        List<Advert> adverts1 = new ArrayList<Advert>();
 
         Optional<Skill> skill = skillRepo.findSkillByName(name);
         List<SkillTaxonomy> children = taxoRepo.findAllByParentName(name);
@@ -58,10 +56,13 @@ public class SkillsController {
         List<AssociatedSkill> assoskills = assosRepo.findBySkillName(name);
         Optional<Set<Advert>> adverts = advertRepo.findAllBySkillIdName(name);
 
+        if (adverts.isPresent()) {
+            adverts1.addAll(advertRepo.findAllBySkillIdName(name).get());
+        }
 
-        List<Advert> adverts1 = new ArrayList<>();
 
-        adverts.ifPresent( set -> set.forEach(adverts1::add) );
+//        adverts1.addAll(adverts.get());
+//        adverts.ifPresent( set -> set.forEach(adverts1::add) );
 
         List userList = new ArrayList<User>();
         for (AssociatedSkill i : assoskills){
