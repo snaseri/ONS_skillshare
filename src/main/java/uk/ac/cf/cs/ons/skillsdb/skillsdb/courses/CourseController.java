@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.enrolledoncourse.EnrolledOnCourse;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.enrolledoncourse.EnrolledRepository;
+import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.Skill;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.SkillRepository;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.User;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.users.UserService;
@@ -45,6 +46,13 @@ public class CourseController {
     @PostMapping("/course/create")
     public String submitCourse(@ModelAttribute("course") @Valid Course course, BindingResult result, Model model) {
 
+        if (course.getSkillId() == null) {
+            Skill s = new Skill();
+            s.setDescription("Unspecified");
+            s.setName("Unspecified");
+            course.setSkillId(s);
+        }
+
         if ( result.hasErrors() ) {
             model.addAttribute("skills", skillRepo.findAll());
             return "courses/create";
@@ -77,9 +85,9 @@ public class CourseController {
         User user = userRepo.findByUsername(username);
 
 
-        if(enrollRepo.findAllByUserIdAndCourseId(user.getId(),id).isPresent()) {
-            enrollmessage = "You have already enrolled for this course";
-        }
+//        if(enrollRepo.findAllByUserIdAndCourseId(user.getId(),id).isPresent()) {
+//            enrollmessage = "You have already enrolled for this course";
+//        }
 
             int enrolledUsers = enrollRepo.countAllByCourseIdIs(course.get().getId());
             model.addAttribute("course", course.get());

@@ -8,23 +8,22 @@
   <body>
 
     <div th:replace=" fragments/navbar.html :: navbar">
-      <!-- Navigation -->
+        <!-- Page Navigation -->
     </div>
 
     <div th:replace=" fragments/header.html :: header">
-      <!-- Header -->
+        <!-- Page Header -->
     </div>
 
     <div th:replace=" fragments/navbar.html :: pagebar">
         <!-- Page Navbar -->
     </div>
 
-
+    <div th:replace=" fragments/search.html :: search">
+        <!-- Page Search -->
+    </div>
 
     <div class="container">
-
-
-
         <small>Title</small>
         <p th:text="*{advert.title}"></p>
         <small>Description</small>
@@ -35,6 +34,11 @@
         <p th:text="*{type}"></p>
         <small>Posted</small>
         <p th:text="*{advert.prettyDate()}"></p>
+        <small>User</small>
+        <p th:text="*{user.username}"></p>
+        <br>
+        <!-- TODO: User should have an email field -->
+        <a class="btn btn-primary" href="#" th:href="'mailto:' + ${user.username} + '@skilldb.com'">Mail</a>
     </div>
 
   </body>

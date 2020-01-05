@@ -127,7 +127,7 @@ public class Course {
      */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "skill_id")
-    @NotNull(message = "Please Select a skill")
+//    @NotNull(message = "Please Select a skill")
     private Skill skillId;
 
 
