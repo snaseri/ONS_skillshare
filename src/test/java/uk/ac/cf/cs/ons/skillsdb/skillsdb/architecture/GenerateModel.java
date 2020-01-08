@@ -31,8 +31,8 @@ public class GenerateModel {
         Model model = workspace.getModel();
 
         // create the basic model (the stuff we can't get from the code)
-        SoftwareSystem skillsDB = model.addSoftwareSystem("skillsDB", "Online sponsorship system");
-        Person user = model.addPerson("User.", "  A person who wishes to give share knowledge or learn");
+        SoftwareSystem skillsDB = model.addSoftwareSystem("skillsDB", "Skill sharing system");
+        Person user = model.addPerson("User.", "  A person who wishes to share knowledge or learn");
 
         user.uses(skillsDB, "Uses");
 
