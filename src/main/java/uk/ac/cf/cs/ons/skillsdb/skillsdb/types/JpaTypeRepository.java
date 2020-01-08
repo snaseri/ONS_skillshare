@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * @see     Type
  */
 @Repository
-public interface TypeRepository extends CrudRepository<Type, Long> {
+public interface TypeRepositoryJPA extends CrudRepository<Type, Long> {
   // TODO: Add any needed queries here...
 }
 

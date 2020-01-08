@@ -19,7 +19,7 @@ import java.util.Set;
  * @see     Advert
  */
 @Repository
-public interface AdvertRepositoryImpl extends AdvertRepository, CrudRepository<Advert, Long> {
+public interface JpaAdvertRepository extends AdvertRepository, CrudRepository<Advert, Long> {
 
     /**
      * Find all Adverts where the advert title is like title.
