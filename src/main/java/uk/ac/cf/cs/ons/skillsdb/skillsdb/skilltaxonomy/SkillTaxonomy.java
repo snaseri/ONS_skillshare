@@ -2,6 +2,7 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.skilltaxonomy;
 
 
 import lombok.Data;
+import lombok.ToString;
 import uk.ac.cf.cs.ons.skillsdb.skillsdb.skills.Skill;
 
 import javax.persistence.*;
@@ -45,6 +46,7 @@ public class SkillTaxonomy {
      */
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_id")
+    @ToString.Exclude
     private Skill parent;
 
     /**
@@ -57,5 +59,6 @@ public class SkillTaxonomy {
      */
     @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "child_id")
+    @ToString.Exclude
     private Skill child;
 }

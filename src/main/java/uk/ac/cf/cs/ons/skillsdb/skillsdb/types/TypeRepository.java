@@ -1,6 +1,7 @@
 package uk.ac.cf.cs.ons.skillsdb.skillsdb.types;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /**
