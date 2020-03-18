@@ -1,6 +1,10 @@
 SET MODE MySQL;
 SET IGNORECASE=TRUE;
 
+
+CREATE DATABASE IF NOT EXISTS SkillsDB;
+
+USE SkillsDB;
 /*
  A <<User>> which e.g JohnDoe
  */
