@@ -166,8 +166,8 @@ INSERT INTO Skills(id, name, description) VALUES (11, 'Flask', 'Flask (web frame
 INSERT INTO Skills(id, name, description) VALUES (12, 'Django', 'Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.');
 
 
---Skills Hierarchy
---Database
+-- Skills Hierarchy
+-- Database
 INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (1, 1, 2);
 INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (2, 1, 3);
 INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (3, 1, 9);
