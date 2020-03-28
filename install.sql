@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS Enrolled_On_Course (
 
 
 --  <<Skills>> can link to other <<Skills>>.
-CREATE TABLE IF NOT EXISTS TAXONOMY (
+CREATE TABLE IF NOT EXISTS Taxonomy (
     id INT PRIMARY KEY AUTO_INCREMENT,
     parent_id INT NOT NULL,
     child_id INT NOT NULL,
@@ -166,8 +166,8 @@ INSERT INTO Skills(id, name, description) VALUES (11, 'Flask', 'Flask (web frame
 INSERT INTO Skills(id, name, description) VALUES (12, 'Django', 'Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.');
 
 
---Skills Hierarchy
---Database
+-- Skills Hierarchy
+-- Database
 INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (1, 1, 2);
 INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (2, 1, 3);
 INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (3, 1, 9);
@@ -182,13 +182,13 @@ INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (9, 4, 9);
 INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (10, 10, 11);
 INSERT INTO Taxonomy(id, parent_id, child_id) VALUES (11, 10, 12);
 
-insert into Users (id, username, password) values (2, 'gflicker1', 'bpSPOJN');
-insert into Users (id, username, password) values (1, 'rstickley0', 'RPdkup');
-insert into Users (id, username, password) values (3, 'dfaiers2', '6NDv5Rd');
-insert into Users (id, username, password) values (5, 'kbreedy4', 'BMmPsLs');
-insert into Users (id, username, password) values (4, 'qumpleby3', 'P0hEGgy');
-insert into Users (id, username, password) values (6, 'eradborn5', 'vZfpSUT');
-insert into Users (id, username, password) values (7, 'jgeockle6', '7tjwiw');
+INSERT INTO Users (id, username, password) values (2, 'gflicker1', 'bpSPOJN');
+INSERT INTO Users (id, username, password) values (1, 'rstickley0', 'RPdkup');
+INSERT INTO Users (id, username, password) values (3, 'dfaiers2', '6NDv5Rd');
+INSERT INTO Users (id, username, password) values (5, 'kbreedy4', 'BMmPsLs');
+INSERT INTO Users (id, username, password) values (4, 'qumpleby3', 'P0hEGgy');
+INSERT INTO Users (id, username, password) values (6, 'eradborn5', 'vZfpSUT');
+INSERT INTO Users (id, username, password) values (7, 'jgeockle6', '7tjwiw');
 insert into Users (id, username, password) values (8, 'awoodruffe7', 'HxWUo8AMU');
 insert into Users (id, username, password) values (9, 'lmccosker8', 'wOP0ZPQK');
 insert into Users (id, username, password) values (10, 'mraselles9', 'Rl9jFm9T');
