@@ -9,6 +9,15 @@ plugins {
 group = 'uk.ac.cf.cs.ons.skillsdb'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+reporting.baseDir = "my-reports"
+testResultsDirName = "$buildDir/my-test-results"
+
+task showDirs {
+	doLast {
+		logger.quiet(rootDir.toPath().relativize(project.reportsDir.toPath()).toString())
+		logger.quiet(rootDir.toPath().relativize(project.testResultsDir.toPath()).toString())
+	}
+}
 
 configurations {
 	developmentOnly
@@ -51,17 +60,28 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	runtimeOnly 'com.h2database:h2'
 	testCompile 'junit:junit:4.12'
+
 }
+
+test {
+	useJUnit()
+	maxHeapSize = '1G'
+	outputs.dir snippetsDir
+//	useJUnitPlatform()
+	reports {
+		junitXml.enabled = true
+		html.enabled = true
+	}
 
 checkstyleMain{
     configFile = file("${configDir}/checkstyleMain.xml")
-    maxErrors=10
+    maxErrors=1000
 }
 
 checkstyleTest{
     configFile = file("${configDir}/checkstyleTest.xml")
     ignoreFailures=true
-    maxErrors=50
+    maxErrors=5000
 }
 
 
@@ -71,12 +91,11 @@ bootRun {
 	systemProperty 'spring.profiles.active', 'demo'
 	main = 'uk.ac.cf.cs.ons.skillsdb.skillsdb.SkillsdbApplication'
 }
+	
+	
 
 
 
-test {
-	outputs.dir snippetsDir
-	useJUnitPlatform()
 }
 
 asciidoctor {
