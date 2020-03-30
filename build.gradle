@@ -72,6 +72,7 @@ test {
 		junitXml.enabled = true
 		html.enabled = true
 	}
+}
 
 checkstyleMain{
     configFile = file("${configDir}/checkstyleMain.xml")
@@ -90,12 +91,6 @@ checkstyleTest{
 bootRun {
 	systemProperty 'spring.profiles.active', 'demo'
 	main = 'uk.ac.cf.cs.ons.skillsdb.skillsdb.SkillsdbApplication'
-}
-	
-	
-
-
-
 }
 
 asciidoctor {
