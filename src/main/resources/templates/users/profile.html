@@ -45,8 +45,7 @@
         <br>
 
 
-    <div class="row">
-
+    <div th:if="${userauthorised == true}" class="row">
         <button><a th:href="@{/deleteUser/(id=${uid})}">Delete User</a></button>
     </div>
 

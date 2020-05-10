@@ -108,11 +108,30 @@ public class UserController {
 
 
 
-
+        if(user != null) {
             modelAndView.setViewName("users/profile");
             model.addAttribute("user", user);
             modelAndView.addObject("username", user.getUsername());
             modelAndView.addObject("uid", user.getId());
+            if(username.equals(currentuser)) {
+
+                Boolean userauthorised = true;
+                modelAndView.addObject("userauthorised", userauthorised);
+            }
+
+            else {
+                Boolean userauthorised = false;
+                modelAndView.addObject("userauthorised", userauthorised);
+            }
+
+
+
+        }
+
+        else {
+
+            modelAndView.setViewName("404");
+        }
 
 
 
