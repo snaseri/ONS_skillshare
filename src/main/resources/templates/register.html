@@ -54,6 +54,11 @@
                 <button type="button" class="close" data-dismiss="alert"
                         aria-hidden="true">×</button>
             </div>
+            <div class="alert alert-danger" th:if="${passwordError != null}">
+                <span th:utext="${passwordError}"></span>
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">×</button>
+            </div>
         </form>
     </div>
 </div>

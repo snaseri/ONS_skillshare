@@ -135,4 +135,9 @@ public class Course {
         return "/courses/" + id;
     }
 
+    public String getHashedID() {
+
+        return "a";
+    }
+
 }

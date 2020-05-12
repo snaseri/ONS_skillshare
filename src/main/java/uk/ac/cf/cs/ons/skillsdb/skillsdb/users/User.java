@@ -2,9 +2,11 @@ package uk.ac.cf.cs.ons.skillsdb.skillsdb.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -51,6 +53,9 @@ public class User {
      * @return password of the user.
      *
      */
+
+    @Length(min = 10, max = 128, message = "Password needs to be longer than 10 characters")
+    @NotNull
     @Column(name = "password")
     private String password;
 

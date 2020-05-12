@@ -83,9 +83,17 @@ public class UserController {
 
     @RequestMapping("deleteUser")
     public String deleteUser(@RequestParam("id") long id){
-        service.deleteUserById(id);
-        asService.deleteAssociatedSkillsByUserId(id);
-        return "index";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User requesteduser = service.findUserByIndex(id).get();
+        if (requesteduser != null && requesteduser.getUsername().equals(authentication.getName())) {
+            service.deleteUserById(id);
+            asService.deleteAssociatedSkillsByUserId(id);
+            return "index";
+        } else {
+            return "404";
+        }
+
+
 
 
     }

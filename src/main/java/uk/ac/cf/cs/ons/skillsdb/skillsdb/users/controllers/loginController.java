@@ -97,6 +97,9 @@ public class loginController {
         if(userExists(user.getUsername())) {
             modelAndView.addObject("errorMessage", "Username taken, please choose another.");
         }
+        if ( bindingResult.hasErrors() ) {
+            modelAndView.addObject("passwordError", "Please choose a strong password longer than 10 characters, with numbers upper case lower case and special characters");
+        }
 
         else {
             userService.save(user);

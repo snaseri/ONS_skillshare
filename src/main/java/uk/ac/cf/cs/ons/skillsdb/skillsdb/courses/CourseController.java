@@ -71,12 +71,12 @@ public class CourseController {
     @GetMapping("/courses/{id}")
     public String coursePage(@PathVariable("id") Long id, Model model) {
 
-            String enrollmessage = null;
-        
-            Optional<Course> course = courseRepo.findById(id);
-            if (!course.isPresent()) {
-                return "404";
-            }
+        String enrollmessage = null;
+
+        Optional<Course> course = courseRepo.findById(id);
+        if (!course.isPresent()) {
+            return "404";
+        }
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -89,10 +89,10 @@ public class CourseController {
 //            enrollmessage = "You have already enrolled for this course";
 //        }
 
-            int enrolledUsers = enrollRepo.countAllByCourseIdIs(course.get().getId());
-            model.addAttribute("course", course.get());
-            model.addAttribute("enrolled", enrolledUsers);
-            model.addAttribute("enrollmessage", enrollmessage);
+        int enrolledUsers = enrollRepo.countAllByCourseIdIs(course.get().getId());
+        model.addAttribute("course", course.get());
+        model.addAttribute("enrolled", enrolledUsers);
+        model.addAttribute("enrollmessage", enrollmessage);
 
 
         return "courses/course";
