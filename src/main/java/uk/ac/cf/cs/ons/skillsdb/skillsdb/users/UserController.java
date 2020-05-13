@@ -109,10 +109,10 @@ public class UserController {
 
 
 
-            modelAndView.setViewName("users/profile");
-            model.addAttribute("user", user);
-            modelAndView.addObject("username", user.getUsername());
-            modelAndView.addObject("uid", user.getId());
+        modelAndView.setViewName("users/profile");
+        model.addAttribute("user", user);
+        modelAndView.addObject("username", user.getUsername());
+        modelAndView.addObject("uid", user.getId());
 
 
 
