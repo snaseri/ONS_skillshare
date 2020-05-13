@@ -83,19 +83,10 @@ public class UserController {
 
     @RequestMapping("deleteUser")
     public String deleteUser(@RequestParam("id") long id){
+        service.deleteUserById(id);
+        asService.deleteAssociatedSkillsByUserId(id);
+        return "index";
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User requesteduser = service.findUserByIndex(id).get();
-        String loggedinuser = authentication.getName();
-
-        if (requesteduser != null && requesteduser.getUsername().equals(loggedinuser)) {
-            service.deleteUserById(id);
-            asService.deleteAssociatedSkillsByUserId(id);
-
-            return "index";
-        } else {
-            return "404";
-        }
 
     }
 
@@ -114,6 +105,7 @@ public class UserController {
 
         List<AssociatedSkill> associatedSkill = asService.findByuser_id(user.getId());
         modelAndView.addObject("associatedskill", associatedSkill);
+
 
 
 
