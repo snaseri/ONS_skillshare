@@ -11,7 +11,7 @@ USE SkillsDB;
 CREATE TABLE IF NOT EXISTS Users (
     id INT PRIMARY KEY AUTO_INCREMENT ,
     username VARCHAR(30) NOT NULL,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(200) NOT NULL
 );
 
 /*

@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -54,9 +55,9 @@ public class User {
      *
      */
 
-    @Length(min = 10, max = 128, message = "Password needs to be longer than 10 characters")
-    @NotNull
+    //@Length(min = 10, max = 128, message = "Password needs to be longer than 10 characters")
     @Column(name = "password")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{10,128}$")
     private String password;
 
 
