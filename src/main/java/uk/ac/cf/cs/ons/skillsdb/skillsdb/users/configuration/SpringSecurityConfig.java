@@ -31,14 +31,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http.csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login")).and()
                 .authorizeRequests()
-                .antMatchers("/index").hasRole("USER")
+//                .antMatchers("/index").hasRole("USER")
                 .antMatchers("/advert/**").hasRole("USER")
-                .antMatchers("/course/create").hasRole("USER")
-                .antMatchers("/courses/{id}").hasRole("USER")
-                .antMatchers("/skill/{i}").hasRole("USER")
-                .antMatchers("/discover" ).hasRole("USER")
-                .antMatchers("/user/**" ).hasRole("USER")
-                .antMatchers("/profile/**" ).hasRole("USER")
+//                .antMatchers("/course/create").hasRole("USER")
+//                .antMatchers("/courses/{id}").hasRole("USER")
+//                .antMatchers("/skill/{i}").hasRole("USER")
+//                .antMatchers("/discover" ).hasRole("USER")
+//                .antMatchers("/user/**" ).hasRole("USER")
+//                .antMatchers("/profile/**" ).hasRole("USER")
 
                 .and().formLogin().defaultSuccessUrl("/search/")
                 .loginPage("/login").and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();

@@ -222,6 +222,9 @@ insert into Users (id, username, password) values (26, 'gkeatp', 'PWEUYqAJF');
 insert into Users (id, username, password) values (25, 'cnazairo', '9B4bUm');
 insert into Users (id, username, password) values (39, 'Robert', 'password');
 insert into Users (id, username, password) values (40, 'Rob', 'password');
+insert into Users (id, username, password) values (41, 'user', '$2a$10$Ug7yWl4MouiKIQIBnIBtY.yFhyfa0wDIuDomuAsnONsbf2.BaXOpG');
+
+
 
 insert into Associated_Skills (id, user_id, skill_id, rating) values (1, 2, 2, 1);
 insert into Associated_Skills (id, user_id, skill_id, rating) values (2, 2, 1, 3);
